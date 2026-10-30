@@ -1,6 +1,9 @@
 /* Blend Buddies – S blends. A friendly S slides along its buddy's arm, they link arms and make the word.
-   Original code, characters and sounds. No dependencies, no cookies, no storage, no tracking.
-   The only request is for words.json (same site). Sounds are synthesized at run time with the Web Audio API. */
+   Minimal pairs are part of the round: a word like "spin" opens on "pin", and S makes the new word.
+   The "listen" slides (one set per blend section) ask the child to pick which word they heard.
+   Original code, characters, pictures (pictures.js) and sounds. No dependencies, no cookies, no storage, no tracking.
+   The only request is for words.json (same site). Sounds are synthesized at run time with the Web Audio API.
+   Optional add-ons (tally.js) plug in through hook() below; without them every hook is a no-op. */
 (function () {
   'use strict';
 
@@ -156,11 +159,21 @@
     buddies: $('buddies'), armLayer: $('armLayer'), ribbon: $('ribbon'), clip: $('ribbonClipRect'), right: $('rightChain'),
     tapRing: $('tapRing'), tapCircle: $('tapCircle'), wordRow: $('wordRow'), burst: $('burst'), blendG: $('blendG'), restG: $('restG'),
     without: $('withoutText'), caption: $('caption'), say: $('sayIt'), secLabel: $('secLabel'), fill2: $('trackFill'),
-    leave: $('btnLeave'), leaveLabel: $('leaveLabel'), hear: $('btnHear'), live: $('liveMsg'),
-    pairCard: $('pairCard'), pairSvg: $('pairSvg'), which: $('whichRow'), whichA: $('whichA'), whichB: $('whichB'), stageTag: $('stageTag')
+    hear: $('btnHear'), live: $('liveMsg'), stageArea: $('stageArea'),
+    picCard: $('picCard'), picA: $('picA'), picB: $('picB'), cmp: $('compareRow'), cmpA: $('cmpA'), cmpB: $('cmpB'),
+    listen: $('listenView'), listenQ: $('listenQ'), cards: $('listenCards'), cardL: $('cardL'), cardR: $('cardR'),
+    play: $('btnPlayWord'), playLabel: $('playLabel'), extra: $('listenExtra')
   };
   var H = 440;
-  var st = { idx: -1, pair: -1, mode: 'drag', pos: 0, link: 0, done: false, locking: false, lonely: false, say: false, G: null, timers: [], raf: 0 };
+  var st = { idx: -1, pair: -1, mode: 'drag', pos: 0, link: 0, done: false, locking: false, say: false, G: null, timers: [], raf: 0,
+    pairFlow: false, pic: 'b', target: null, targetSrc: '', order: [] };
+
+  /* ---------- add-on hooks (the only connection to optional modules such as tally.js) ---------- */
+  function hook(name, data) {
+    var hs = window.BlendBuddiesHooks;
+    if (!hs || typeof hs[name] !== 'function') return undefined;
+    try { return hs[name](data); } catch (e) { return undefined; }
+  }
 
   /* ---------- helpers ---------- */
   function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
@@ -226,14 +239,17 @@
   /* ---------- characters ---------- */
   function buildBuddy(parent, ch, cx, CY, R) {
     var c = letterStyle(ch), g = mk('g', { 'data-letter': ch }, parent, 'buddy');
+    g.style.animationDelay = (-((cx * 7) % 37) / 10).toFixed(1) + 's';     // idle breathing, out of step with the neighbours
     var bodyG = mk('g', {}, g, 'buddy-body');
     mk('circle', { cx: cx, cy: CY, r: R, fill: c.color, filter: 'url(#soft)' }, bodyG, 'body');
     mk('ellipse', { cx: cx - R * 0.38, cy: CY - R * 0.52, rx: R * 0.22, ry: R * 0.13, transform: 'rotate(-30 ' + (cx - R * 0.38) + ' ' + (CY - R * 0.52) + ')' }, bodyG, 'shine');
+    var eyesG = mk('g', {}, bodyG, 'eyes');
+    eyesG.style.animationDelay = (-((cx * 13) % 53) / 10).toFixed(1) + 's';  // blink now and then
     [-1, 1].forEach(function (s) {
       mk('ellipse', { cx: cx + s * R * 0.58, cy: CY + R * 0.42, rx: R * 0.14, ry: R * 0.09 }, bodyG, 'cheek');
-      mk('circle', { cx: cx + s * R * 0.3, cy: CY - R * 0.5, r: R * 0.165 }, bodyG, 'eye-white');
-      mk('circle', { cx: cx + s * R * 0.3 + R * 0.03, cy: CY - R * 0.47, r: R * 0.085 }, bodyG, 'pupil');
-      mk('circle', { cx: cx + s * R * 0.3 + R * 0.06, cy: CY - R * 0.52, r: R * 0.03 }, bodyG, 'glint');
+      mk('circle', { cx: cx + s * R * 0.3, cy: CY - R * 0.5, r: R * 0.165 }, eyesG, 'eye-white');
+      mk('circle', { cx: cx + s * R * 0.3 + R * 0.03, cy: CY - R * 0.47, r: R * 0.085 }, eyesG, 'pupil');
+      mk('circle', { cx: cx + s * R * 0.3 + R * 0.06, cy: CY - R * 0.52, r: R * 0.03 }, eyesG, 'glint');
     });
     var t = mk('text', { x: cx, y: CY + R * 0.1, 'text-anchor': 'middle', 'dominant-baseline': 'central', fill: c.ink }, bodyG, 'letter');
     t.textContent = ch; t.style.fontSize = (R * 0.98) + 'px';
@@ -335,7 +351,7 @@
     segs.push({ t: w.rest, color: null });
     var bar = mk('rect', { x: 0, y: 0, width: 0, height: 0 }, el.blendG, 'link-bar');
     var nodes = segs.map(function (s) {
-      var n = mk('text', { x: 0, y: WY, 'dominant-baseline': 'central' }, s.color ? el.blendG : el.restG, 'word-text seg' + (s.color ? ' blend' : ' rest'));
+      var n = mk('text', { x: 0, y: WY, 'dominant-baseline': 'central' }, s.color ? el.blendG : el.restG, 'word-text seg' + (s.color ? ' blend' : ' rest') + (s.t === w.s && s === segs[0] ? ' s-seg' : ''));
       if (s.color) n.style.setProperty('--c', shade(s.color, -0.12));
       return n;
     });
@@ -352,7 +368,13 @@
     bar.setAttribute('x', (x0 + 2).toFixed(1)); bar.setAttribute('width', Math.max(0, bw - 4).toFixed(1));
     bar.setAttribute('y', (WY + F * 0.44).toFixed(1)); bar.setAttribute('height', (F * 0.09).toFixed(1)); bar.setAttribute('rx', (F * 0.045).toFixed(1));
     bar.setAttribute('fill', letterStyle(sd.left[0]).color);
-    measure(el.without, w.without || '', F); el.without.setAttribute('x', W / 2); el.without.setAttribute('y', WY);
+    // pair words open on the no-S word, centred. When S links, it slides right into place and the S slides in in front of it
+    // (pin -> spin). If the no-S word is spelled differently (no / snow, pie / spy) it just cross-fades in place.
+    var wW = measure(el.without, w.without || '', F), startX = W / 2 - wW / 2, slides = !!w.without && w.word.slice(w.s.length) === w.without;
+    var endX = slides ? x0 + widths[0] : startX;
+    el.without.setAttribute('x', endX.toFixed(1)); el.without.setAttribute('y', WY); el.without.setAttribute('text-anchor', 'start');
+    el.without.style.setProperty('--mx', (startX - endX).toFixed(1) + 'px');
+    stage.classList.toggle('morph-slide', slides);
     // star burst around the finished word
     var rxB = total / 2 + 46, ryB = F * 0.58 + 6, cxB = W / 2;
     for (var b = 0; b < 10; b++) {
@@ -362,6 +384,7 @@
       sp.style.animationDelay = (b * 0.03).toFixed(2) + 's';
     }
     el.caption.setAttribute('x', W / 2); el.caption.setAttribute('y', 34);
+    G.wordBox = { x: x0, w: total, y: WY - F * 0.6, h: F * 1.2 };
     G.F = F;
     st.G = G;
     render();
@@ -377,41 +400,40 @@
       'C' + (x + s * 0.7) + ' ' + (y - s * 1.3) + ' ' + (x + s * 1.6) + ' ' + (y - s * 0.2) + ' ' + x + ' ' + (y + s * 0.9) + 'Z';
   }
 
-  /* ---------- minimal-pair card: the buddy alone with the no-S word ---------- */
-  function buildPairCard(w) {
-    var svg = el.pairSvg; clear(svg);
-    var box = el.pairCard.getBoundingClientRect(), wide = box.height > 0 && box.width / box.height > 1.6;
-    var sd = sides(w), n = sd.right.length, R = 54, HOLD = 2 * R + 40, VW = wide ? 640 : 320, VH = wide ? 220 : 300, CY = wide ? 104 : 118;
-    var ccx = wide ? 190 : VW / 2;
-    svg.setAttribute('viewBox', '0 0 ' + VW + ' ' + VH);
-    var x0 = ccx - (n - 1) * HOLD / 2, g = mk('g', {}, svg, 'pair-chain');
-    var bs = sd.right.map(function (ch, j) { return buildBuddy(g, ch, x0 + j * HOLD, CY, R); });
-    for (var j = 0; j + 1 < n; j++) {
-      var mid = (bs[j].cx + bs[j + 1].cx) / 2, a1 = arm(g, bs[j].dark), a2 = arm(g, bs[j + 1].dark);
-      g.insertBefore(a1.g, g.firstChild); g.insertBefore(a2.g, g.firstChild);
-      setArm(a1, [bs[j].cx + R * 0.84, CY + R * 0.28], [mid - 4, CY + R * 0.5], 7, R);
-      setArm(a2, [bs[j + 1].cx - R * 0.84, CY + R * 0.28], [mid + 4, CY + R * 0.5], -7, R);
-    }
-    var aL = arm(g, bs[0].dark), aR = arm(g, bs[n - 1].dark);
-    g.insertBefore(aL.g, g.firstChild); g.insertBefore(aR.g, g.firstChild);
-    setArm(aL, [bs[0].cx - R * 0.84, CY + R * 0.28], [bs[0].cx - R * 1.15, CY + R * 1.0], -6, R);          // droopy: nobody to hold
-    setArm(aR, [bs[n - 1].cx + R * 0.84, CY + R * 0.28], [bs[n - 1].cx + R * 1.15, CY + R * 1.0], 6, R);
-    bs.forEach(function (b) { setMouth(b, CY, R, -1); });
-    var tx = wide ? 470 : VW / 2, maxW = wide ? 300 : VW - 24;
-    var t = mk('text', { x: tx, y: wide ? 112 : 252, 'text-anchor': 'middle', 'dominant-baseline': 'central' }, svg, 'word-text pair-word');
-    var F = wide ? 96 : 84, wd = measure(t, w.without, F); if (wd > maxW) measure(t, w.without, Math.floor(F * maxW / wd));
+  /* ---------- pictures (pictures.js) ---------- */
+  function picInto(svg, word) {
+    var P = window.BBPictures, markup = P && P.has(word) ? P.svg(word) : '';
+    clear(svg); svg.setAttribute('data-word', word || '');
+    if (markup) svg.insertAdjacentHTML('beforeend', markup);   // our own markup (pictures.js), no user input
+  }
+  function popIn(node, cls) { cls = cls || 'pop-in'; node.classList.remove(cls); void node.getBoundingClientRect(); node.classList.add(cls); }
+  function showPic(which) {   // 'a' = the no-S word's picture, 'b' = the S word's picture
+    if (st.pic === which) return;
+    st.pic = which; el.picCard.classList.toggle('show-a', which === 'a'); el.picCard.dataset.pic = which;
+    popIn(which === 'a' ? el.picA : el.picB);
+  }
+  function chipLabel(btn, text, sLetter) {
+    btn.textContent = '';
+    var ic = document.createElementNS(NS, 'svg'); ic.setAttribute('viewBox', '0 0 200 200'); ic.setAttribute('class', 'pic chip-pic'); ic.setAttribute('aria-hidden', 'true');
+    picInto(ic, text); btn.appendChild(ic);
+    var s = document.createElement('span'); s.className = 'chip-word';
+    if (sLetter) { var b = document.createElement('b'); b.className = 'chip-s'; b.textContent = text.charAt(0); s.appendChild(b); s.appendChild(document.createTextNode(text.slice(1))); }
+    else s.textContent = text;
+    btn.appendChild(s);
+    var sp = document.createElementNS(NS, 'svg'); sp.setAttribute('viewBox', '0 0 24 24'); sp.setAttribute('aria-hidden', 'true'); sp.setAttribute('class', 'chip-spk');
+    mk('path', { d: 'M4 9v6h4l5 4V5L8 9z' }, sp); mk('path', { d: 'M16 8.5a5 5 0 0 1 0 7' }, sp);
+    btn.appendChild(sp); btn.setAttribute('aria-label', 'Hear “' + text + '”'); btn.dataset.word = text;
   }
 
   /* ---------- state -> view ---------- */
-  function shownWord() { var w = WORDS[st.idx]; return !w ? '' : st.lonely ? w.without : w.word; }
+  function shownWord() { var w = WORDS[st.idx]; return !w ? '' : st.pairFlow && !st.done ? w.without : w.word; }
   function render() {
     var G = st.G, w = WORDS[st.idx]; if (!G || !w) return;
     var R = G.R, CY = G.CY, pos = st.pos, L = st.link, p = G.snapPos > 0 ? pos / G.snapPos : 1;
     mover.style.transform = 'translate(' + pos.toFixed(1) + 'px,0px)';
     el.clip.setAttribute('width', Math.max(0, pos).toFixed(1));
     // the buddy's long arm is the track: it reaches out to S with an open hand, then curls in to link arms
-    if (st.lonely) setArm(G.longArm, G.longA, [G.longA[0] - R * 0.3, CY + R * 0.95], -6, R);   // droopy, nobody to hold
-    else setArm(G.longArm, G.longA, [lerp(G.longB[0], G.meet[0] - 7, L), lerp(G.longB[1], G.meet[1], L)], lerp(8, -24, L), R, lerp(0.21, 0.15, L));
+    setArm(G.longArm, G.longA, [lerp(G.longB[0], G.meet[0] - 7, L), lerp(G.longB[1], G.meet[1], L)], lerp(8, -24, L), R, lerp(0.21, 0.15, L));
     // S's leading hand slides along that arm, then hooks on
     var lead = G.lx[G.nL - 1], sh = [lead + R * 0.84, CY + R * 0.28];
     var handPlay = [lead + R * 1.22, G.yA - 2], handLink = [G.meet[0] + 7 - G.snapPos, G.meet[1]];
@@ -421,28 +443,31 @@
     setArm(G.leftOuter, [c0 - R * 0.84, CY + R * 0.28], [c0 - R * lerp(1.18, 1.2, L), CY + R * lerp(0.78, -0.5, L)], lerp(-8, 10, L), R);
     var cheer = st.done ? 1 : 0;
     setArm(G.rightOuter, [cN + R * 0.84, CY + R * 0.28], [cN + R * lerp(1.18, 1.2, cheer || L), CY + R * lerp(0.78, -0.5, cheer || L)], lerp(8, -10, cheer || L), R);
-    var smile = st.lonely ? -1 : 1 + L;
+    // in a pair word the buddy starts out alone and a bit sad, and cheers up as S comes closer
+    var smile = st.pairFlow && L === 0 ? lerp(-1, 1, clamp(p * 1.6, 0, 1)) : 1 + L;
     G.leftB.forEach(function (b) { setMouth(b, CY, R, 1 + L); });
     G.rightB.forEach(function (b) { setMouth(b, CY, R, smile); });
     stage.classList.toggle('done', st.done);
-    stage.classList.toggle('lonely', st.lonely);
+    stage.classList.toggle('pairflow', st.pairFlow);
+    stage.classList.toggle('alone', st.pairFlow && pos < 0.5 && !st.locking && !st.done);
     stage.classList.toggle('linked', L > 0.98);
     stage.classList.toggle('moving', pos > 0.5 || st.locking);
-    var shift = st.done ? G.shiftDone : st.lonely ? G.shiftLonely : 0, lift = st.done || st.lonely ? -G.LIFT : 0;
+    var shift = st.done ? G.shiftDone : 0, lift = st.done ? -G.LIFT : 0;
     el.buddies.style.transform = 'translate(' + shift.toFixed(1) + 'px,' + lift + 'px)';
     var pct = Math.round(clamp(st.done ? 1 : p, 0, 1) * 100);
     handle.style.left = pct + '%'; el.fill2.style.width = pct + '%';
     mover.setAttribute('aria-valuenow', pct); track.setAttribute('aria-valuenow', pct);
-    el.caption.textContent = st.lonely ? 'Without ' + FR.name + ', it says:' : (st.done && st.fromLonely ? 'With ' + FR.name + ', it says:' : '');
+    el.caption.textContent = !st.pairFlow ? '' : st.done ? FR.name + ' made a new word!' : 'Can ' + FR.name + ' make a new word?';
     app.dataset.progress = pct; app.dataset.done = st.done ? '1' : '0'; app.dataset.word = w.id;
-    app.dataset.view = st.lonely ? 'lonely' : st.done ? 'done' : 'play';
+    app.dataset.view = st.done ? 'done' : 'play';
+    app.dataset.flow = st.pairFlow ? 'pair' : 'single';
+    app.dataset.shown = shownWord();
     app.dataset.link = L.toFixed(2);
-    app.classList.toggle('hint', !st.done && !st.lonely && !st.locking && pct === 0);
-    var pairMode = st.pair >= 0;
-    el.leave.hidden = !w.without || pairMode;   // available any time (not in a minimal-pair round, which already shows both words)
-    el.leave.setAttribute('aria-pressed', String(st.lonely));
-    el.leaveLabel.textContent = st.lonely ? 'Bring ' + FR.name + ' back' : 'Leave ' + FR.name + ' out?';
-    el.hear.hidden = !(st.done || st.lonely);
+    app.classList.toggle('hint', !st.done && !st.locking && pct === 0);
+    // compare chips: space is always kept on pair words, they become visible once S has made the new word
+    el.cmp.hidden = !st.pairFlow; el.cmp.classList.toggle('shown', st.pairFlow && st.done);
+    el.cmpA.disabled = el.cmpB.disabled = !(st.pairFlow && st.done);
+    el.hear.hidden = !(st.done || st.pairFlow);
     el.hear.setAttribute('aria-label', 'Hear “' + shownWord() + '” again');
     renderSay();
   }
@@ -451,19 +476,18 @@
     if (!st.say || !w) { el.say.hidden = true; return; }
     el.say.hidden = false; el.say.textContent = '';
     var b = document.createElement('b');
-    if (st.lonely) { el.say.appendChild(document.createTextNode('Without ' + FR.name + ': ')); b.textContent = w.without; el.say.appendChild(b); }
-    else if (st.done) { el.say.appendChild(document.createTextNode('Say it! ')); b.textContent = w.word; el.say.appendChild(b); }
+    if (st.done) { el.say.appendChild(document.createTextNode('Say it! ')); b.textContent = w.word; el.say.appendChild(b); }
     else { el.say.appendChild(document.createTextNode('Hold “' + new Array(6).join(FR.hold || 's') + '”, then “' + w.partner + '”: ')); b.textContent = w.word; el.say.appendChild(b); }
   }
   function speakShown() { Speech.say(shownWord()); }
   function setPos(pos) {
-    var G = st.G; if (!G || st.done || st.locking || st.lonely) return;
+    var G = st.G; if (!G || st.done || st.locking) return;
     st.pos = clamp(pos, 0, G.snapPos);
     render();
     if (st.pos >= G.snapPos * 0.985) complete();
   }
   function complete() {
-    if (st.done || st.locking || !st.G || st.lonely) return;
+    if (st.done || st.locking || !st.G) return;
     st.locking = true; Sound.whooshStop(); app.classList.add('anim');
     var G = st.G, from = st.pos, idx = st.idx;
     tween(from, G.snapPos, 120 + 260 * (1 - from / G.snapPos), function (v) { st.pos = v; render(); }, function () {   // 1) S slides the last bit
@@ -472,11 +496,12 @@
         later(function () { stage.classList.add('tapped'); Sound.tap(); }, 140);                                      // 3) tap-pop on the second sound
         later(function () {                                                                                            // 4) blend letters light up + star burst
           st.locking = false; st.done = true; render();
+          if (st.pairFlow) showPic('b');                                                                              //    pin's picture turns into spin's
           var word = WORDS[idx].word;
           mover.setAttribute('aria-label', FR.name + ' linked arms. The word is ' + word + '.');
           announce('Linked! ' + word);
           Sound.chime(Speech.available());
-          later(function () { if (st.done && st.idx === idx && !st.lonely) Speech.say(word); }, 520);               // 5) say the word, after the chime's attack
+          later(function () { if (st.done && st.idx === idx) Speech.say(word); }, 520);               // 5) say the word, after the chime's attack
         }, 420);
       }, easeInOut);
     });
@@ -484,71 +509,114 @@
   function resetView() {
     clearTimers(); Sound.whooshStop(); Speech.cancel();
     stage.classList.remove('popped', 'tapped');
-    st.locking = false; st.done = false; st.link = 0; st.lonely = false; st.fromLonely = false;
+    st.locking = false; st.done = false; st.link = 0;
     mover.setAttribute('aria-label', FR.name + ' character. Drag along the arm to link arms.');
   }
   function reset() {
-    var from = st.pos; resetView(); render();
+    var from = st.pos; resetView(); if (st.pairFlow) showPic('a'); render();
     tween(from, 0, 320, function (v) { st.pos = v; render(); });
   }
-  function toggleLonely() {
-    var w = WORDS[st.idx]; if (!w || !w.without) return;
-    if (!st.lonely) { resetView(); st.pos = 0; st.lonely = true; render(); Speech.say(w.without); }
-    else {
-      resetView(); st.pos = 0; st.fromLonely = true; render();
-      later(function () { st.fromLonely = true; complete(); }, 260);
-    }
-  }
-
   /* ---------- word / mode / picker ---------- */
   function setURL(q) { try { history.replaceState(null, '', location.pathname + q); } catch (e) { /* ignore */ } }
   function updateURL() {
     var w = WORDS[st.idx], q = !w ? '' : st.pair >= 0 ? '?mp=' + encodeURIComponent(w.id) : '?w=' + encodeURIComponent(w.word);
     if (st.mode === 'slide') q += (q ? '&' : '?') + 'm=slider';
-    setURL(q);
+    setURL(q + urlExtra(q));
   }
+  function urlExtra(q) { var x = [st.motionOn === false ? 'motion=off' : '', hook('urlExtra')].filter(Boolean).join('&'); return x ? (q ? '&' : '?') + x : ''; }
   function setLabel(chipText, bg, ink, rest) {
     el.secLabel.textContent = '';
     var chip = document.createElement('b'); chip.textContent = chipText; chip.style.background = bg; chip.style.color = ink;
     el.secLabel.appendChild(chip); el.secLabel.appendChild(document.createTextNode('  ' + rest));
   }
-  function whichLabel(btn, text, sLetter) {
-    btn.textContent = '';
-    var s = document.createElement('span'); s.className = 'which-word';
-    if (sLetter) { var b = document.createElement('b'); b.className = 'which-s'; b.textContent = text.charAt(0); s.appendChild(b); s.appendChild(document.createTextNode(text.slice(1))); }
-    else s.textContent = text;
-    btn.appendChild(s);
-    var ic = document.createElementNS(NS, 'svg'); ic.setAttribute('viewBox', '0 0 24 24'); ic.setAttribute('aria-hidden', 'true');
-    mk('path', { d: 'M4 9v6h4l5 4V5L8 9z' }, ic); mk('path', { d: 'M16 8.5a5 5 0 0 1 0 7' }, ic);
-    btn.appendChild(ic); btn.setAttribute('aria-label', 'Hear “' + text + '”');
-  }
-  function loadWord(i, pairIdx) {
-    Speech.cancel();
-    st.idx = (i + WORDS.length) % WORDS.length;
-    st.pair = pairIdx === undefined ? -1 : pairIdx;
-    var w = WORDS[st.idx], g = GROUPS[w.group], pairMode = st.pair >= 0;
-    if (pairMode) setLabel('minimal pairs', '#5236C4', '#FFFFFF', 'pair ' + (st.pair + 1) + ' of ' + PAIRS.length);
-    else {
-      var list = WORDS.filter(function (x) { return x.group === w.group; });
-      setLabel(g.name, g.color, g.ink, 'word ' + (list.indexOf(w) + 1) + ' of ' + list.length);
-    }
+  function loadWord(i) {
+    Speech.cancel(); leaveListen();
+    st.idx = (i + WORDS.length) % WORDS.length; st.pair = -1;
+    var w = WORDS[st.idx], g = GROUPS[w.group];
+    var list = WORDS.filter(function (x) { return x.group === w.group; });
+    setLabel(g.name, g.color, g.ink, 'word ' + (list.indexOf(w) + 1) + ' of ' + list.length);
     app.style.setProperty('--gbg', g.bg); app.style.setProperty('--gc', g.color);
-    app.classList.toggle('pair-mode', pairMode);
-    el.pairCard.hidden = !pairMode; el.which.hidden = !pairMode; el.stageTag.hidden = !pairMode;
-    if (pairMode) {
-      buildPairCard(w);
-      el.pairCard.setAttribute('aria-label', 'Without ' + FR.name + ': ' + w.without + '. Tap to hear it.');
-      el.stageTag.textContent = 'With ' + FR.name;
-      whichLabel(el.whichA, w.without, false); whichLabel(el.whichB, w.word, true);
-    }
-    stage.setAttribute('aria-label', FR.name + ' and ' + w.partner.toUpperCase() + ' link arms to make ' + w.word);
-    $('picker').hidden = true; $('play').hidden = false;
+    app.classList.remove('listen-mode');
+    st.pairFlow = !!w.without;
+    picInto(el.picB, w.word); picInto(el.picA, w.without || '');
+    st.pic = ''; showPic(st.pairFlow ? 'a' : 'b');
+    el.picCard.setAttribute('aria-label', 'Picture: ' + (st.pairFlow ? w.without : w.word) + '. Tap to hear it.');
+    if (st.pairFlow) { chipLabel(el.cmpA, w.without, false); chipLabel(el.cmpB, w.word, true); }
+    stage.setAttribute('aria-label', st.pairFlow ? 'The word is ' + w.without + '. Can ' + FR.name + ' make a new word?' : FR.name + ' and ' + w.partner.toUpperCase() + ' link arms to make ' + w.word);
+    $('picker').hidden = true; $('play').hidden = false; el.listen.hidden = true; el.stageArea.hidden = false;
     resetView(); st.pos = 0; app.classList.remove('anim');
     layout(); updateURL();
+    popIn(el.stageArea, 'fade-in');
     requestAnimationFrame(function () { requestAnimationFrame(function () { app.classList.add('anim'); }); });
   }
-  function loadPair(k) { k = (k + PAIRS.length) % PAIRS.length; loadWord(PAIRS[k], k); }
-  function step(d) { if (st.pair >= 0) loadPair(st.pair + d); else loadWord(st.idx + d); }
+
+  /* ---------- listen slides: which word did you hear? (one set per blend section) ---------- */
+  function setOf(k) {   // the pairs of the same section, in list order
+    var gid = WORDS[PAIRS[k]].group, ks = [];
+    PAIRS.forEach(function (wi, j) { if (WORDS[wi].group === gid) ks.push(j); });
+    return { group: gid, name: GROUPS[gid].name, ks: ks, pos: ks.indexOf(k) };
+  }
+  function pairName(w) { return w.without + '/' + w.word; }
+  function setTarget(word, src) {
+    st.target = word || null; st.targetSrc = word ? src : '';
+    app.dataset.target = st.target || ''; app.dataset.targetSrc = st.targetSrc;
+    el.playLabel.textContent = st.target && st.targetSrc === 'play' ? 'Hear it again' : 'Play a word';
+    el.listenQ.textContent = st.target ? 'Which one did you hear?' : 'Tap a picture to hear it.';
+    hook('target', { word: st.target, source: st.targetSrc });
+  }
+  function slideCtx() {
+    var w = WORDS[st.idx], so = setOf(st.pair);
+    return { pair: pairName(w), words: [w.without, w.word], set: so.group, setName: so.name, index: so.pos, count: so.ks.length,
+      slot: el.extra, overlayHost: el.cards, setTarget: function (word) { if (word === w.word || word === w.without || !word) setTarget(word, 'adult'); },
+      next: function () { goPair(st.pair + 1); }, refreshURL: updateURL };
+  }
+  function loadPair(k) {
+    k = (k + PAIRS.length) % PAIRS.length;
+    resetView();
+    st.pair = k; st.idx = PAIRS[k]; st.pairFlow = false;
+    var w = WORDS[st.idx], g = GROUPS[w.group], so = setOf(k);
+    setLabel('listen', '#5236C4', '#FFFFFF', g.name + ' · ' + (so.pos + 1) + ' of ' + so.ks.length);
+    app.style.setProperty('--gbg', g.bg); app.style.setProperty('--gc', g.color);
+    app.classList.add('listen-mode');
+    $('picker').hidden = true; $('play').hidden = false; el.stageArea.hidden = true; el.cmp.hidden = true; el.listen.hidden = false;
+    el.say.hidden = true; el.hear.hidden = true;
+    st.order = Math.random() < 0.5 ? [w.without, w.word] : [w.word, w.without];
+    [el.cardL, el.cardR].forEach(function (c, j) {
+      var word = st.order[j]; c.classList.remove('right', 'wrong', 'reveal');
+      c.dataset.word = word; c.setAttribute('aria-label', word);
+      picInto(c.querySelector('svg'), word);
+      var lab = c.querySelector('.card-word'); lab.textContent = '';
+      if (word === w.word) { var b = document.createElement('b'); b.className = 'chip-s'; b.textContent = word.charAt(0); lab.appendChild(b); lab.appendChild(document.createTextNode(word.slice(1))); }
+      else lab.textContent = word;
+      popIn(c);
+    });
+    setTarget(null, '');
+    app.dataset.word = w.id; app.dataset.view = 'listen'; app.dataset.done = '0'; app.dataset.flow = 'listen'; app.dataset.shown = '';
+    app.dataset.set = so.group; app.dataset.pair = pairName(w);
+    updateURL();
+    hook('slide', slideCtx());
+  }
+  function leaveListen() { if (st.pair >= 0) hook('leave'); st.target = null; }
+  function goPair(k) { loadPair(k); }
+  function answer(card) {
+    var w = WORDS[st.idx], word = card.dataset.word; if (!w || st.pair < 0) return;
+    if (!st.target) { Speech.say(word); flash(card); return; }   // nothing asked yet: tapping a picture just says its word
+    var target = st.target, ok = word === target, other = card === el.cardL ? el.cardR : el.cardL;
+    hook('answer', { pair: pairName(w), set: setOf(st.pair).group, target: target, tapped: word, correct: ok, source: st.targetSrc });
+    [el.cardL, el.cardR].forEach(function (c) { c.classList.remove('right', 'wrong', 'reveal'); void c.getBoundingClientRect(); });
+    if (ok) { card.classList.add('right'); Sound.chime(true); announce('Yes! ' + target); }
+    else { card.classList.add('wrong'); other.classList.add('reveal'); announce('That was ' + target); }
+    app.dataset.last = (ok ? 'right:' : 'wrong:') + word;
+    setTarget(null, '');
+  }
+
+  function step(d) {
+    if (st.pair >= 0) {
+      var so = setOf(st.pair);
+      if (d > 0 && so.pos === so.ks.length - 1 && hook('setEnd', { set: so.group, setName: so.name, ctx: slideCtx() }) === true) return;   // e.g. tally summary first
+      loadPair(st.pair + d);
+    } else loadWord(st.idx + d);
+  }
   function flash(node) { node.classList.remove('flash'); void node.getBoundingClientRect(); node.classList.add('flash'); later(function () { node.classList.remove('flash'); }, 700); }
   function setMode(m) {
     st.mode = m === 'slide' ? 'slide' : 'drag';
@@ -558,7 +626,8 @@
     $('sliderRow').hidden = !slide; mover.classList.toggle('no-drag', slide);
     mover.setAttribute('tabindex', slide ? '-1' : '0');
     app.dataset.mode = st.mode;
-    if (st.idx >= 0) { resetView(); st.pos = 0; layout(); updateURL(); }
+    if (st.idx >= 0 && st.pair < 0) { resetView(); st.pos = 0; if (st.pairFlow) showPic('a'); layout(); updateURL(); }
+    else if (st.pair >= 0) updateURL();
   }
   function blendSpan(parent, w) {
     var sd = sides(w);
@@ -582,14 +651,17 @@
       WORDS.forEach(function (w, i) {
         if (w.group !== g.id) return;
         var a = document.createElement('a'); a.className = 'word-btn'; a.href = '?w=' + encodeURIComponent(w.word);
-        a.dataset.w = w.id; blendSpan(a, w);
+        a.dataset.w = w.id;
+        var ic = document.createElementNS(NS, 'svg'); ic.setAttribute('viewBox', '0 0 200 200'); ic.setAttribute('class', 'pic btn-pic'); ic.setAttribute('aria-hidden', 'true');
+        picInto(ic, w.word); a.appendChild(ic);
+        var t = document.createElement('span'); t.className = 'btn-word'; blendSpan(t, w); a.appendChild(t);
         a.addEventListener('click', function (e) { e.preventDefault(); loadWord(i); });
         gb.grid.appendChild(a);
       });
       groups.appendChild(gb.box);
     });
     if (PAIRS.length) {
-      var pb = groupBox('pairs', 'minimal pairs', 'with S and without S', '#F4F1FF', '#5236C4', '#FFFFFF');
+      var pb = groupBox('pairs', 'listen', 'which one did you hear? one set per blend', '#F4F1FF', '#5236C4', '#FFFFFF');
       pb.box.classList.add('group-pairs');
       PAIRS.forEach(function (wi, k) {
         var w = WORDS[wi], a = document.createElement('a'); a.className = 'word-btn pair-btn'; a.href = '?mp=' + encodeURIComponent(w.id);
@@ -603,7 +675,7 @@
     }
   }
   function showPicker(gid, missing) {
-    resetView();
+    leaveListen(); resetView(); app.classList.remove('listen-mode');
     $('play').hidden = true; $('picker').hidden = false;
     var nf = $('notFound');
     if (missing) { nf.hidden = false; nf.textContent = 'Couldn’t find “' + missing + '”. Pick one below.'; } else nf.hidden = true;
@@ -613,14 +685,14 @@
     st.idx = -1; st.pair = -1; app.dataset.word = ''; app.dataset.view = 'picker';
     var q = gid && (GROUPS[gid] || gid === 'pairs') ? '?g=' + gid : '';
     if (st.mode === 'slide') q += (q ? '&' : '?') + 'm=slider';
-    setURL(q);
+    setURL(q + urlExtra(q));
   }
 
   /* ---------- input: drag mode (Pointer Events on S) ---------- */
   var drag = null;
   function svgScale() { var m = stage.getScreenCTM(); return m ? m.a : 1; }
   mover.addEventListener('pointerdown', function (e) {
-    if (st.mode !== 'drag' || st.done || st.locking || st.lonely || drag) return;
+    if (st.mode !== 'drag' || st.done || st.locking || drag) return;
     e.preventDefault();
     try { mover.setPointerCapture(e.pointerId); } catch (x) {}
     stopTween();
@@ -657,7 +729,7 @@
     setPos(clamp((clientX - r.left) / r.width, 0, 1) * st.G.snapPos);
   }
   track.addEventListener('pointerdown', function (e) {
-    if (st.done || st.locking || st.lonely || sl) return;
+    if (st.done || st.locking || sl) return;
     e.preventDefault();
     try { track.setPointerCapture(e.pointerId); } catch (x) {}
     stopTween();
@@ -684,7 +756,7 @@
 
   /* keyboard: arrows move S / the handle, End finishes, PageDown/PageUp = next/prev (presentation clickers) */
   function keyStep(e) {
-    if (!st.G || st.done || st.locking || st.lonely) return;
+    if (!st.G || st.done || st.locking || st.pair >= 0) return;
     var step0 = st.G.snapPos / 20, target = null;
     if (e.key === 'ArrowRight') target = st.pos + step0;
     else if (e.key === 'ArrowLeft') target = st.pos - step0;
@@ -713,20 +785,30 @@
   $('btnPrev').addEventListener('click', function () { step(-1); });
   $('btnNext').addEventListener('click', function () { step(1); });
   $('btnReset').addEventListener('click', reset);
-  el.leave.addEventListener('click', toggleLonely);
   el.hear.addEventListener('click', function () { speakShown(); flash(wrap); });
   el.wordRow.addEventListener('click', function () { if (!st.locking) speakShown(); });   // tap the word to hear it
   $('btnWords').addEventListener('click', function () { var w = WORDS[st.idx]; showPicker(st.pair >= 0 ? 'pairs' : w ? w.group : null); });
   $('btnSay').addEventListener('click', function () {
     st.say = !st.say; $('btnSay').setAttribute('aria-pressed', String(st.say)); renderSay();
-    if (st.say) speakShown();
+    if (st.say) { var w = WORDS[st.idx]; if (w) Speech.say(w.word); }   // always the target word (spin), also before S has linked
   });
-  function hearWithout() { var w = WORDS[st.idx]; if (!w) return; Speech.say(w.without); flash(el.pairCard); flash(el.whichA); }
-  function hearWith() { var w = WORDS[st.idx]; if (!w) return; Speech.say(w.word); flash(wrap); flash(el.whichB); }
-  el.pairCard.addEventListener('click', hearWithout);
-  el.pairCard.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); hearWithout(); } });
-  el.whichA.addEventListener('click', hearWithout);
-  el.whichB.addEventListener('click', hearWith);
+  // picture card: hear the word it shows. Compare chips (pair words, after the link): hear each word, show its picture
+  function hearPic() { var w = WORDS[st.idx]; if (!w || st.pair >= 0) return; Speech.say(st.pic === 'a' ? w.without : w.word); flash(el.picCard); }
+  el.picCard.addEventListener('click', hearPic);
+  el.picCard.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); hearPic(); } });
+  [el.cmpA, el.cmpB].forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (!st.done || !st.pairFlow) return;
+      Speech.say(b.dataset.word); flash(b); showPic(b === el.cmpA ? 'a' : 'b');
+      el.cmpA.setAttribute('aria-pressed', String(b === el.cmpA)); el.cmpB.setAttribute('aria-pressed', String(b === el.cmpB));
+    });
+  });
+  el.play.addEventListener('click', function () {
+    var w = WORDS[st.idx]; if (!w || st.pair < 0) return;
+    if (!st.target || st.targetSrc !== 'play') setTarget(Math.random() < 0.5 ? w.word : w.without, 'play');
+    Speech.say(st.target); flash(el.play);
+  });
+  [el.cardL, el.cardR].forEach(function (c) { c.addEventListener('click', function () { answer(c); }); });
   $('modeDrag').addEventListener('click', function () { setMode('drag'); });
   $('modeSlide').addEventListener('click', function () { setMode('slide'); });
   function renderSound() {
@@ -734,6 +816,14 @@
     b.setAttribute('aria-pressed', String(on)); b.setAttribute('aria-label', on ? 'Sound on' : 'Sound off');
     b.classList.toggle('muted', !on); app.dataset.sound = on ? 'on' : 'off';
   }
+  /* motion pause: stops the picture and idle animations (pictures stay, as still images); kept only in the link (?motion=off) */
+  function renderMotion() {
+    var on = st.motionOn !== false, b = $('btnMotion');
+    b.setAttribute('aria-pressed', String(on)); b.setAttribute('aria-label', on ? 'Motion on. Tap to pause the moving pictures.' : 'Motion paused. Tap to play the moving pictures.');
+    b.title = on ? 'Pause motion' : 'Play motion';
+    b.classList.toggle('muted', !on); document.documentElement.classList.toggle('still', !on); app.dataset.motion = on ? 'on' : 'off';
+  }
+  $('btnMotion').addEventListener('click', function () { st.motionOn = st.motionOn === false; renderMotion(); if (app.dataset.ready === '1') { if ($('picker').hidden) updateURL(); else { var q = location.search.replace(/[?&]motion=off/g, '').replace(/^&/, '?'); if (q === '?') q = ''; setURL(q + urlExtra(q)); } } });
   $('btnSound').addEventListener('click', function () { Sound.setOn(!Sound.isOn()); if (!Sound.isOn()) Speech.cancel(); renderSound(); });   // not remembered: always starts ON
 
   /* ---------- start ---------- */
@@ -744,7 +834,9 @@
     PAIRS = (DATA.pairs || []).map(function (id) { return findWord(id); }).filter(function (i) { return i >= 0 && WORDS[i].without; });
     document.title = (DATA.title || 'Blend Buddies') + ' – ' + (DATA.subtitle || '');
     buildPicker(); renderSound();
-    var relayout = function () { if (st.idx >= 0) { layout(); if (st.pair >= 0) buildPairCard(WORDS[st.idx]); } };
+    var q0 = new URLSearchParams(location.search);
+    st.motionOn = !(norm(q0.get('motion')) === 'off' || (mq && mq.matches)); renderMotion();
+    var relayout = function () { if (st.idx >= 0 && st.pair < 0) layout(); };
     if (window.ResizeObserver) new ResizeObserver(relayout).observe(wrap); else window.addEventListener('resize', relayout);
     var q = new URLSearchParams(location.search);
     var m = norm(q.get('m') || q.get('mode'));

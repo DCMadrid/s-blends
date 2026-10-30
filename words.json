@@ -1,5 +1,5 @@
 {
- "about": "Blend Buddies word list - the single source of truth for the page. word = s + partner + rest. 'friend' sets which letter is the friendly mover and its side, so L-blends or R-blends can reuse the same code later. 'without' is the real word you get when the friendly letter is left out (empty = no Leave-S-out button). Link a word with ?w=<word>. 'pairs' lists the word ids used in the Minimal pairs round (?mp=<id>).",
+ "about": "Blend Buddies word list - the single source of truth for the page. word = s + partner + rest. 'friend' sets which letter is the friendly mover and its side, so L-blends or R-blends can reuse the same code later. 'without' is the real word you get when the friendly letter is left out (empty = not a pair word); pair words open on that word and S links on to make the new word. Link a word with ?w=<word>. 'pairs' lists the word ids used on the listen slides, one set per blend section (?mp=<id>).",
  "title": "Blend Buddies",
  "subtitle": "S Blends",
  "friend": {
@@ -517,7 +517,7 @@
    "rest": "ash",
    "blend": "sm",
    "group": "sm",
-   "without": "mash"
+   "without": ""
   },
   {
    "id": "smooth",

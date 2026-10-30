@@ -27,6 +27,10 @@
       <button id="modeSlide" class="mode-btn" type="button" role="radio" aria-checked="false">Slider</button>
       <span class="mode-knob" aria-hidden="true"></span>
     </div>
+    <button id="btnMotion" class="btn btn-sound btn-motion" type="button" aria-pressed="true" aria-label="Motion on. Tap to pause the moving pictures.">
+      <svg class="ico-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6v12M15 6v12"/></svg>
+      <svg class="ico-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>
+    </button>
     <button id="btnSound" class="btn btn-sound" type="button" aria-pressed="true" aria-label="Sound on">
       <svg class="ico-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg>
       <svg class="ico-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M17 9l5 6M22 9l-5 6"/></svg>
@@ -35,45 +39,58 @@
 
   <main id="play" class="play">
     <div id="stageArea" class="stage-area">
-    <div id="pairCard" class="pair-card" role="button" tabindex="0" aria-label="Without S. Tap to hear it." hidden>
-      <span class="card-tag">Without S</span>
-      <svg id="pairSvg" class="pair-svg" viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
+      <div id="picCard" class="pic-card" role="button" tabindex="0" aria-label="Picture. Tap to hear the word.">
+        <svg id="picA" class="pic pic-a" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
+        <svg id="picB" class="pic pic-b" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
+      </div>
+      <div id="stageWrap" class="stage-wrap">
+        <button id="btnHear" class="hear-btn" type="button" aria-label="Hear the word again" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg>
+        </button>
+        <svg id="stage" class="stage" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="stageTitle">
+          <title id="stageTitle">Blend buddies</title>
+          <defs>
+            <clipPath id="ribbonClip"><rect id="ribbonClipRect" x="0" y="0" width="0" height="1000"/></clipPath>
+            <filter id="soft" x="-30%" y="-30%" width="160%" height="170%">
+              <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#2B2D42" flood-opacity="0.20"/>
+            </filter>
+          </defs>
+          <text id="caption" class="caption" x="0" y="0" text-anchor="middle" dominant-baseline="central"></text>
+          <g id="buddies" class="buddies">
+            <g id="armLayer"></g>
+            <g id="ribbon" class="ribbon" clip-path="url(#ribbonClip)"></g>
+            <g id="rightChain" class="chain right"></g>
+            <g id="mover" class="chain mover" tabindex="0" role="slider" aria-label="S character. Drag along the arm to link arms." aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></g>
+            <g id="tapRing" class="tap-ring" aria-hidden="true"><circle id="tapCircle" cx="0" cy="0" r="0"/></g>
+          </g>
+          <g id="wordRow" class="word-row" aria-hidden="true">
+            <g id="burst" class="burst"></g>
+            <g id="blendG" class="blend-g"></g>
+            <g id="restG" class="rest-g"></g>
+            <text id="withoutText" class="word-text without" x="0" y="0" text-anchor="start" dominant-baseline="central"></text>
+          </g>
+        </svg>
+      </div>
     </div>
-    <div id="stageWrap" class="stage-wrap">
-      <span id="stageTag" class="card-tag" hidden>With S</span>
-      <button id="btnHear" class="hear-btn" type="button" aria-label="Hear the word again" hidden>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg>
-      </button>
-      <svg id="stage" class="stage" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="stageTitle">
-        <title id="stageTitle">Blend buddies</title>
-        <defs>
-          <clipPath id="ribbonClip"><rect id="ribbonClipRect" x="0" y="0" width="0" height="1000"/></clipPath>
-          <filter id="soft" x="-30%" y="-30%" width="160%" height="170%">
-            <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#2B2D42" flood-opacity="0.20"/>
-          </filter>
-        </defs>
-        <text id="caption" class="caption" x="0" y="0" text-anchor="middle" dominant-baseline="central"></text>
-        <g id="buddies" class="buddies">
-          <g id="armLayer"></g>
-          <g id="ribbon" class="ribbon" clip-path="url(#ribbonClip)"></g>
-          <g id="rightChain" class="chain right"></g>
-          <g id="mover" class="chain mover" tabindex="0" role="slider" aria-label="S character. Drag along the arm to link arms." aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></g>
-          <g id="tapRing" class="tap-ring" aria-hidden="true"><circle id="tapCircle" cx="0" cy="0" r="0"/></g>
-        </g>
-        <g id="wordRow" class="word-row" aria-hidden="true">
-          <g id="burst" class="burst"></g>
-          <g id="blendG" class="blend-g"></g>
-          <g id="restG" class="rest-g"></g>
-          <text id="withoutText" class="word-text without" x="0" y="0" text-anchor="middle" dominant-baseline="central"></text>
-        </g>
-      </svg>
+    <!-- pair words: after S makes the new word, compare both (space is kept so nothing jumps) -->
+    <div id="compareRow" class="compare" role="group" aria-label="Compare the two words" hidden>
+      <button id="cmpA" class="btn cmp-btn" type="button" aria-pressed="false" disabled></button>
+      <span class="cmp-dot" aria-hidden="true">·</span>
+      <button id="cmpB" class="btn cmp-btn" type="button" aria-pressed="false" disabled></button>
     </div>
-    </div>
-    <div id="whichRow" class="which" hidden>
-      <span class="which-q">Which one?</span>
-      <button id="whichA" class="btn which-btn which-a" type="button"></button>
-      <button id="whichB" class="btn which-btn which-b" type="button"></button>
-    </div>
+    <!-- listen slides: which word did you hear? -->
+    <section id="listenView" class="listen" aria-label="Which word did you hear?" hidden>
+      <p id="listenQ" class="listen-q">Tap a picture to hear it.</p>
+      <div id="listenCards" class="listen-cards">
+        <button id="cardL" class="listen-card" type="button"><svg class="pic" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg><span class="card-word"></span></button>
+        <button id="cardR" class="listen-card" type="button"><svg class="pic" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg><span class="card-word"></span></button>
+      </div>
+      <div class="listen-bar">
+        <button id="btnPlayWord" class="btn btn-play" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg><span id="playLabel">Play a word</span></button>
+        <div id="listenExtra" class="listen-extra"></div>
+      </div>
+    </section>
     <div id="liveMsg" class="sr-only" aria-live="polite"></div>
     <div id="sayIt" class="say-it" aria-live="polite" hidden></div>
 
@@ -90,7 +107,6 @@
       <button id="btnReset" class="btn btn-reset" type="button" aria-label="Reset this word">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v5h5"/></svg><span>Reset</span></button>
       <button id="btnSay" class="btn btn-say" type="button" aria-pressed="false"><span>Say it!</span></button>
-      <button id="btnLeave" class="btn btn-leave" type="button" aria-pressed="false" hidden><span id="leaveLabel">Leave S out?</span></button>
       <button id="btnNext" class="btn btn-nav" type="button" aria-label="Next word">
         <span>Next</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
     </nav>
@@ -99,13 +115,15 @@
   <section id="picker" class="picker" hidden>
     <div class="picker-head">
       <h1>Blend Buddies – S Blends</h1>
-      <p class="picker-sub">Pick a word. S is friendly and wants to join the other letters. The adult slides S along its friend’s arm while the child holds “sssss”, then they link arms, light up the blend and say the word. Minimal pairs (stop · top) are at the end.</p>
+      <p class="picker-sub">Pick a word. S is friendly and wants to join the other letters. The adult slides S along its friend’s arm while the child holds “sssss”, then they link arms, light up the blend and say the word. Pair words (pin → spin) start without S. The listen slides at the end ask “which one did you hear?”.</p>
       <p id="notFound" class="not-found" hidden></p>
     </div>
     <div id="groups" class="groups"></div>
     <footer class="credit">Created for Daniela Madrid, MS, CCC-SLP · All characters, art and sounds original · No data collected</footer>
   </section>
 </div>
+<script src="pictures.js"></script>
+<script src="tally.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
