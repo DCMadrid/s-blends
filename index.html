@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; connect-src 'self'; media-src 'none'; form-action 'none'; base-uri 'none'">
+<title>Blend Buddies – S Blends</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%23FFF7E8%27/%3E%3Ccircle cx=%2720%27 cy=%2734%27 r=%2714%27 fill=%27%238E6CFF%27/%3E%3Ccircle cx=%2744%27 cy=%2734%27 r=%2714%27 fill=%27%2314A3A3%27/%3E%3Cpath d=%27M30 36q2-6 4 0%27 stroke=%27%232B2D42%27 stroke-width=%273%27 fill=%27none%27/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header class="bar">
+    <button id="btnWords" class="btn btn-words" type="button" aria-label="Choose a word">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg><span>Words</span>
+    </button>
+    <div class="title-wrap">
+      <div class="title">Blend Buddies</div>
+      <div id="secLabel" class="sec-label"></div>
+    </div>
+    <div class="mode" role="radiogroup" aria-label="Mode">
+      <button id="modeDrag" class="mode-btn" type="button" role="radio" aria-checked="true">Drag</button>
+      <button id="modeSlide" class="mode-btn" type="button" role="radio" aria-checked="false">Slider</button>
+      <span class="mode-knob" aria-hidden="true"></span>
+    </div>
+    <button id="btnSound" class="btn btn-sound" type="button" aria-pressed="true" aria-label="Sound on">
+      <svg class="ico-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg>
+      <svg class="ico-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M17 9l5 6M22 9l-5 6"/></svg>
+    </button>
+  </header>
+
+  <main id="play" class="play">
+    <div id="stageWrap" class="stage-wrap">
+      <svg id="stage" class="stage" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="stageTitle">
+        <title id="stageTitle">Blend buddies</title>
+        <defs>
+          <clipPath id="ribbonClip"><rect id="ribbonClipRect" x="0" y="0" width="0" height="1000"/></clipPath>
+          <filter id="soft" x="-30%" y="-30%" width="160%" height="170%">
+            <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#2B2D42" flood-opacity="0.20"/>
+          </filter>
+        </defs>
+        <text id="caption" class="caption" x="0" y="0" text-anchor="middle" dominant-baseline="central"></text>
+        <g id="buddies" class="buddies">
+          <g id="armLayer"></g>
+          <g id="ribbon" class="ribbon" clip-path="url(#ribbonClip)"></g>
+          <g id="rightChain" class="chain right"></g>
+          <g id="mover" class="chain mover" tabindex="0" role="slider" aria-label="S. Drag along the arm." aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></g>
+          <g id="tapRing" class="tap-ring" aria-hidden="true"><circle id="tapCircle" cx="0" cy="0" r="0"/></g>
+        </g>
+        <g id="wordRow" class="word-row" aria-hidden="true">
+          <g id="burst" class="burst"></g>
+          <g id="blendG" class="blend-g"></g>
+          <g id="restG" class="rest-g"></g>
+          <text id="withoutText" class="word-text without" x="0" y="0" text-anchor="middle" dominant-baseline="central"></text>
+        </g>
+      </svg>
+    </div>
+    <div id="sayIt" class="say-it" aria-live="polite" hidden></div>
+
+    <div id="sliderRow" class="slider-row" hidden>
+      <div id="track" class="track" role="slider" tabindex="0" aria-label="Slide S along the arm" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div id="trackFill" class="track-fill"></div>
+        <div id="handle" class="handle"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></div>
+      </div>
+    </div>
+
+    <nav class="controls" aria-label="Controls">
+      <button id="btnPrev" class="btn btn-nav" type="button" aria-label="Previous word">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span>Prev</span></button>
+      <button id="btnReset" class="btn btn-reset" type="button" aria-label="Reset this word">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v5h5"/></svg><span>Reset</span></button>
+      <button id="btnSay" class="btn btn-say" type="button" aria-pressed="false"><span>Say it!</span></button>
+      <button id="btnLeave" class="btn btn-leave" type="button" aria-pressed="false" hidden><span id="leaveLabel">Leave S out?</span></button>
+      <button id="btnNext" class="btn btn-nav" type="button" aria-label="Next word">
+        <span>Next</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+    </nav>
+  </main>
+
+  <section id="picker" class="picker" hidden>
+    <div class="picker-head">
+      <h1>Blend Buddies – S Blends</h1>
+      <p class="picker-sub">Pick a word. S is friendly and wants to join the other letters. The adult slides S along its friend’s arm while the child holds “sssss”, then they link arms and make the word.</p>
+      <p id="notFound" class="not-found" hidden></p>
+    </div>
+    <div id="groups" class="groups"></div>
+    <footer class="credit">Created for Daniela Madrid, MS, CCC-SLP · All characters, art and sounds original · No data collected</footer>
+  </section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

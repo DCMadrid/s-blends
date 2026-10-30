@@ -1,0 +1,1117 @@
+{
+ "about": "Blend Buddies word list - the single source of truth for the page. word = s + partner + rest. 'friend' sets which letter is the friendly mover and its side, so L-blends or R-blends can reuse the same code later. 'without' is the real word you get when the friendly letter is left out (empty = no Leave-S-out button). Link a word with ?w=<word>.",
+ "title": "Blend Buddies",
+ "subtitle": "S Blends",
+ "friend": {
+  "letters": "s",
+  "side": "left",
+  "name": "S",
+  "hold": "s"
+ },
+ "letters": {
+  "s": {
+   "color": "#8E6CFF",
+   "ink": "#FFFFFF"
+  },
+  "t": {
+   "color": "#14A3A3",
+   "ink": "#FFFFFF"
+  },
+  "p": {
+   "color": "#E0457B",
+   "ink": "#FFFFFF"
+  },
+  "k": {
+   "color": "#F2A33A",
+   "ink": "#3A2600"
+  },
+  "c": {
+   "color": "#E8833A",
+   "ink": "#3A1E00"
+  },
+  "m": {
+   "color": "#E85D5D",
+   "ink": "#FFFFFF"
+  },
+  "n": {
+   "color": "#3A86FF",
+   "ink": "#FFFFFF"
+  },
+  "w": {
+   "color": "#C05BD6",
+   "ink": "#FFFFFF"
+  },
+  "l": {
+   "color": "#2CB67D",
+   "ink": "#FFFFFF"
+  },
+  "r": {
+   "color": "#3FA34D",
+   "ink": "#FFFFFF"
+  }
+ },
+ "groups": [
+  {
+   "id": "st",
+   "name": "st blends",
+   "sub": "",
+   "bg": "#E8F5F3",
+   "color": "#0E7C7B",
+   "ink": "#FFFFFF"
+  },
+  {
+   "id": "sp",
+   "name": "sp blends",
+   "sub": "",
+   "bg": "#FBEFF3",
+   "color": "#B03A68",
+   "ink": "#FFFFFF"
+  },
+  {
+   "id": "sk",
+   "name": "sk blends",
+   "sub": "sk and sc spellings",
+   "bg": "#FFF4E3",
+   "color": "#A8590C",
+   "ink": "#FFFFFF"
+  },
+  {
+   "id": "sm",
+   "name": "sm blends",
+   "sub": "",
+   "bg": "#FDF0EC",
+   "color": "#B4472F",
+   "ink": "#FFFFFF"
+  },
+  {
+   "id": "sn",
+   "name": "sn blends",
+   "sub": "",
+   "bg": "#EDF2FF",
+   "color": "#2F5FC4",
+   "ink": "#FFFFFF"
+  },
+  {
+   "id": "sw",
+   "name": "sw blends",
+   "sub": "",
+   "bg": "#F6EFFB",
+   "color": "#8A3FA8",
+   "ink": "#FFFFFF"
+  },
+  {
+   "id": "sl",
+   "name": "sl blends",
+   "sub": "",
+   "bg": "#EAF6EE",
+   "color": "#1F7A4D",
+   "ink": "#FFFFFF"
+  },
+  {
+   "id": "str",
+   "name": "str blends",
+   "sub": "three-letter blend",
+   "bg": "#EFF0FA",
+   "color": "#4B4FB0",
+   "ink": "#FFFFFF"
+  },
+  {
+   "id": "spl",
+   "name": "spl blends",
+   "sub": "three-letter blend",
+   "bg": "#FCF0F6",
+   "color": "#A23A78",
+   "ink": "#FFFFFF"
+  },
+  {
+   "id": "scr",
+   "name": "scr blends",
+   "sub": "three-letter blend",
+   "bg": "#FFF2EA",
+   "color": "#A64B1A",
+   "ink": "#FFFFFF"
+  }
+ ],
+ "words": [
+  {
+   "id": "star",
+   "word": "star",
+   "s": "s",
+   "partner": "t",
+   "rest": "ar",
+   "blend": "st",
+   "group": "st",
+   "without": ""
+  },
+  {
+   "id": "stop",
+   "word": "stop",
+   "s": "s",
+   "partner": "t",
+   "rest": "op",
+   "blend": "st",
+   "group": "st",
+   "without": "top"
+  },
+  {
+   "id": "step",
+   "word": "step",
+   "s": "s",
+   "partner": "t",
+   "rest": "ep",
+   "blend": "st",
+   "group": "st",
+   "without": ""
+  },
+  {
+   "id": "stick",
+   "word": "stick",
+   "s": "s",
+   "partner": "t",
+   "rest": "ick",
+   "blend": "st",
+   "group": "st",
+   "without": "tick"
+  },
+  {
+   "id": "stamp",
+   "word": "stamp",
+   "s": "s",
+   "partner": "t",
+   "rest": "amp",
+   "blend": "st",
+   "group": "st",
+   "without": ""
+  },
+  {
+   "id": "stairs",
+   "word": "stairs",
+   "s": "s",
+   "partner": "t",
+   "rest": "airs",
+   "blend": "st",
+   "group": "st",
+   "without": ""
+  },
+  {
+   "id": "stove",
+   "word": "stove",
+   "s": "s",
+   "partner": "t",
+   "rest": "ove",
+   "blend": "st",
+   "group": "st",
+   "without": ""
+  },
+  {
+   "id": "stool",
+   "word": "stool",
+   "s": "s",
+   "partner": "t",
+   "rest": "ool",
+   "blend": "st",
+   "group": "st",
+   "without": "tool"
+  },
+  {
+   "id": "stack",
+   "word": "stack",
+   "s": "s",
+   "partner": "t",
+   "rest": "ack",
+   "blend": "st",
+   "group": "st",
+   "without": ""
+  },
+  {
+   "id": "stem",
+   "word": "stem",
+   "s": "s",
+   "partner": "t",
+   "rest": "em",
+   "blend": "st",
+   "group": "st",
+   "without": ""
+  },
+  {
+   "id": "spoon",
+   "word": "spoon",
+   "s": "s",
+   "partner": "p",
+   "rest": "oon",
+   "blend": "sp",
+   "group": "sp",
+   "without": ""
+  },
+  {
+   "id": "spider",
+   "word": "spider",
+   "s": "s",
+   "partner": "p",
+   "rest": "ider",
+   "blend": "sp",
+   "group": "sp",
+   "without": ""
+  },
+  {
+   "id": "spill",
+   "word": "spill",
+   "s": "s",
+   "partner": "p",
+   "rest": "ill",
+   "blend": "sp",
+   "group": "sp",
+   "without": "pill"
+  },
+  {
+   "id": "spin",
+   "word": "spin",
+   "s": "s",
+   "partner": "p",
+   "rest": "in",
+   "blend": "sp",
+   "group": "sp",
+   "without": "pin"
+  },
+  {
+   "id": "spot",
+   "word": "spot",
+   "s": "s",
+   "partner": "p",
+   "rest": "ot",
+   "blend": "sp",
+   "group": "sp",
+   "without": "pot"
+  },
+  {
+   "id": "sponge",
+   "word": "sponge",
+   "s": "s",
+   "partner": "p",
+   "rest": "onge",
+   "blend": "sp",
+   "group": "sp",
+   "without": ""
+  },
+  {
+   "id": "space",
+   "word": "space",
+   "s": "s",
+   "partner": "p",
+   "rest": "ace",
+   "blend": "sp",
+   "group": "sp",
+   "without": ""
+  },
+  {
+   "id": "spy",
+   "word": "spy",
+   "s": "s",
+   "partner": "p",
+   "rest": "y",
+   "blend": "sp",
+   "group": "sp",
+   "without": "pie"
+  },
+  {
+   "id": "spark",
+   "word": "spark",
+   "s": "s",
+   "partner": "p",
+   "rest": "ark",
+   "blend": "sp",
+   "group": "sp",
+   "without": "park"
+  },
+  {
+   "id": "spaghetti",
+   "word": "spaghetti",
+   "s": "s",
+   "partner": "p",
+   "rest": "aghetti",
+   "blend": "sp",
+   "group": "sp",
+   "without": ""
+  },
+  {
+   "id": "sky",
+   "word": "sky",
+   "s": "s",
+   "partner": "k",
+   "rest": "y",
+   "blend": "sk",
+   "group": "sk",
+   "without": ""
+  },
+  {
+   "id": "skate",
+   "word": "skate",
+   "s": "s",
+   "partner": "k",
+   "rest": "ate",
+   "blend": "sk",
+   "group": "sk",
+   "without": ""
+  },
+  {
+   "id": "skip",
+   "word": "skip",
+   "s": "s",
+   "partner": "k",
+   "rest": "ip",
+   "blend": "sk",
+   "group": "sk",
+   "without": ""
+  },
+  {
+   "id": "skunk",
+   "word": "skunk",
+   "s": "s",
+   "partner": "k",
+   "rest": "unk",
+   "blend": "sk",
+   "group": "sk",
+   "without": ""
+  },
+  {
+   "id": "skirt",
+   "word": "skirt",
+   "s": "s",
+   "partner": "k",
+   "rest": "irt",
+   "blend": "sk",
+   "group": "sk",
+   "without": ""
+  },
+  {
+   "id": "ski",
+   "word": "ski",
+   "s": "s",
+   "partner": "k",
+   "rest": "i",
+   "blend": "sk",
+   "group": "sk",
+   "without": ""
+  },
+  {
+   "id": "skateboard",
+   "word": "skateboard",
+   "s": "s",
+   "partner": "k",
+   "rest": "ateboard",
+   "blend": "sk",
+   "group": "sk",
+   "without": ""
+  },
+  {
+   "id": "skeleton",
+   "word": "skeleton",
+   "s": "s",
+   "partner": "k",
+   "rest": "eleton",
+   "blend": "sk",
+   "group": "sk",
+   "without": ""
+  },
+  {
+   "id": "scooter",
+   "word": "scooter",
+   "s": "s",
+   "partner": "c",
+   "rest": "ooter",
+   "blend": "sc",
+   "group": "sk",
+   "without": ""
+  },
+  {
+   "id": "scarf",
+   "word": "scarf",
+   "s": "s",
+   "partner": "c",
+   "rest": "arf",
+   "blend": "sc",
+   "group": "sk",
+   "without": ""
+  },
+  {
+   "id": "smile",
+   "word": "smile",
+   "s": "s",
+   "partner": "m",
+   "rest": "ile",
+   "blend": "sm",
+   "group": "sm",
+   "without": "mile"
+  },
+  {
+   "id": "small",
+   "word": "small",
+   "s": "s",
+   "partner": "m",
+   "rest": "all",
+   "blend": "sm",
+   "group": "sm",
+   "without": "mall"
+  },
+  {
+   "id": "smell",
+   "word": "smell",
+   "s": "s",
+   "partner": "m",
+   "rest": "ell",
+   "blend": "sm",
+   "group": "sm",
+   "without": ""
+  },
+  {
+   "id": "smoke",
+   "word": "smoke",
+   "s": "s",
+   "partner": "m",
+   "rest": "oke",
+   "blend": "sm",
+   "group": "sm",
+   "without": ""
+  },
+  {
+   "id": "smash",
+   "word": "smash",
+   "s": "s",
+   "partner": "m",
+   "rest": "ash",
+   "blend": "sm",
+   "group": "sm",
+   "without": "mash"
+  },
+  {
+   "id": "smooth",
+   "word": "smooth",
+   "s": "s",
+   "partner": "m",
+   "rest": "ooth",
+   "blend": "sm",
+   "group": "sm",
+   "without": ""
+  },
+  {
+   "id": "smoothie",
+   "word": "smoothie",
+   "s": "s",
+   "partner": "m",
+   "rest": "oothie",
+   "blend": "sm",
+   "group": "sm",
+   "without": ""
+  },
+  {
+   "id": "smudge",
+   "word": "smudge",
+   "s": "s",
+   "partner": "m",
+   "rest": "udge",
+   "blend": "sm",
+   "group": "sm",
+   "without": ""
+  },
+  {
+   "id": "smart",
+   "word": "smart",
+   "s": "s",
+   "partner": "m",
+   "rest": "art",
+   "blend": "sm",
+   "group": "sm",
+   "without": ""
+  },
+  {
+   "id": "smock",
+   "word": "smock",
+   "s": "s",
+   "partner": "m",
+   "rest": "ock",
+   "blend": "sm",
+   "group": "sm",
+   "without": ""
+  },
+  {
+   "id": "snow",
+   "word": "snow",
+   "s": "s",
+   "partner": "n",
+   "rest": "ow",
+   "blend": "sn",
+   "group": "sn",
+   "without": "no"
+  },
+  {
+   "id": "snake",
+   "word": "snake",
+   "s": "s",
+   "partner": "n",
+   "rest": "ake",
+   "blend": "sn",
+   "group": "sn",
+   "without": ""
+  },
+  {
+   "id": "snack",
+   "word": "snack",
+   "s": "s",
+   "partner": "n",
+   "rest": "ack",
+   "blend": "sn",
+   "group": "sn",
+   "without": ""
+  },
+  {
+   "id": "snail",
+   "word": "snail",
+   "s": "s",
+   "partner": "n",
+   "rest": "ail",
+   "blend": "sn",
+   "group": "sn",
+   "without": "nail"
+  },
+  {
+   "id": "sneeze",
+   "word": "sneeze",
+   "s": "s",
+   "partner": "n",
+   "rest": "eeze",
+   "blend": "sn",
+   "group": "sn",
+   "without": "knees"
+  },
+  {
+   "id": "snap",
+   "word": "snap",
+   "s": "s",
+   "partner": "n",
+   "rest": "ap",
+   "blend": "sn",
+   "group": "sn",
+   "without": "nap"
+  },
+  {
+   "id": "sniff",
+   "word": "sniff",
+   "s": "s",
+   "partner": "n",
+   "rest": "iff",
+   "blend": "sn",
+   "group": "sn",
+   "without": ""
+  },
+  {
+   "id": "snore",
+   "word": "snore",
+   "s": "s",
+   "partner": "n",
+   "rest": "ore",
+   "blend": "sn",
+   "group": "sn",
+   "without": ""
+  },
+  {
+   "id": "snowman",
+   "word": "snowman",
+   "s": "s",
+   "partner": "n",
+   "rest": "owman",
+   "blend": "sn",
+   "group": "sn",
+   "without": ""
+  },
+  {
+   "id": "sneaker",
+   "word": "sneaker",
+   "s": "s",
+   "partner": "n",
+   "rest": "eaker",
+   "blend": "sn",
+   "group": "sn",
+   "without": ""
+  },
+  {
+   "id": "swing",
+   "word": "swing",
+   "s": "s",
+   "partner": "w",
+   "rest": "ing",
+   "blend": "sw",
+   "group": "sw",
+   "without": "wing"
+  },
+  {
+   "id": "swim",
+   "word": "swim",
+   "s": "s",
+   "partner": "w",
+   "rest": "im",
+   "blend": "sw",
+   "group": "sw",
+   "without": ""
+  },
+  {
+   "id": "sweater",
+   "word": "sweater",
+   "s": "s",
+   "partner": "w",
+   "rest": "eater",
+   "blend": "sw",
+   "group": "sw",
+   "without": ""
+  },
+  {
+   "id": "swan",
+   "word": "swan",
+   "s": "s",
+   "partner": "w",
+   "rest": "an",
+   "blend": "sw",
+   "group": "sw",
+   "without": ""
+  },
+  {
+   "id": "sweep",
+   "word": "sweep",
+   "s": "s",
+   "partner": "w",
+   "rest": "eep",
+   "blend": "sw",
+   "group": "sw",
+   "without": ""
+  },
+  {
+   "id": "switch",
+   "word": "switch",
+   "s": "s",
+   "partner": "w",
+   "rest": "itch",
+   "blend": "sw",
+   "group": "sw",
+   "without": "witch"
+  },
+  {
+   "id": "swirl",
+   "word": "swirl",
+   "s": "s",
+   "partner": "w",
+   "rest": "irl",
+   "blend": "sw",
+   "group": "sw",
+   "without": ""
+  },
+  {
+   "id": "swamp",
+   "word": "swamp",
+   "s": "s",
+   "partner": "w",
+   "rest": "amp",
+   "blend": "sw",
+   "group": "sw",
+   "without": ""
+  },
+  {
+   "id": "sweet",
+   "word": "sweet",
+   "s": "s",
+   "partner": "w",
+   "rest": "eet",
+   "blend": "sw",
+   "group": "sw",
+   "without": ""
+  },
+  {
+   "id": "swimsuit",
+   "word": "swimsuit",
+   "s": "s",
+   "partner": "w",
+   "rest": "imsuit",
+   "blend": "sw",
+   "group": "sw",
+   "without": ""
+  },
+  {
+   "id": "slide",
+   "word": "slide",
+   "s": "s",
+   "partner": "l",
+   "rest": "ide",
+   "blend": "sl",
+   "group": "sl",
+   "without": ""
+  },
+  {
+   "id": "sled",
+   "word": "sled",
+   "s": "s",
+   "partner": "l",
+   "rest": "ed",
+   "blend": "sl",
+   "group": "sl",
+   "without": ""
+  },
+  {
+   "id": "slime",
+   "word": "slime",
+   "s": "s",
+   "partner": "l",
+   "rest": "ime",
+   "blend": "sl",
+   "group": "sl",
+   "without": "lime"
+  },
+  {
+   "id": "sleep",
+   "word": "sleep",
+   "s": "s",
+   "partner": "l",
+   "rest": "eep",
+   "blend": "sl",
+   "group": "sl",
+   "without": ""
+  },
+  {
+   "id": "slow",
+   "word": "slow",
+   "s": "s",
+   "partner": "l",
+   "rest": "ow",
+   "blend": "sl",
+   "group": "sl",
+   "without": "low"
+  },
+  {
+   "id": "slipper",
+   "word": "slipper",
+   "s": "s",
+   "partner": "l",
+   "rest": "ipper",
+   "blend": "sl",
+   "group": "sl",
+   "without": ""
+  },
+  {
+   "id": "sloth",
+   "word": "sloth",
+   "s": "s",
+   "partner": "l",
+   "rest": "oth",
+   "blend": "sl",
+   "group": "sl",
+   "without": ""
+  },
+  {
+   "id": "slug",
+   "word": "slug",
+   "s": "s",
+   "partner": "l",
+   "rest": "ug",
+   "blend": "sl",
+   "group": "sl",
+   "without": ""
+  },
+  {
+   "id": "slice",
+   "word": "slice",
+   "s": "s",
+   "partner": "l",
+   "rest": "ice",
+   "blend": "sl",
+   "group": "sl",
+   "without": ""
+  },
+  {
+   "id": "slip",
+   "word": "slip",
+   "s": "s",
+   "partner": "l",
+   "rest": "ip",
+   "blend": "sl",
+   "group": "sl",
+   "without": "lip"
+  },
+  {
+   "id": "straw",
+   "word": "straw",
+   "s": "s",
+   "partner": "tr",
+   "rest": "aw",
+   "blend": "str",
+   "group": "str",
+   "without": ""
+  },
+  {
+   "id": "string",
+   "word": "string",
+   "s": "s",
+   "partner": "tr",
+   "rest": "ing",
+   "blend": "str",
+   "group": "str",
+   "without": ""
+  },
+  {
+   "id": "street",
+   "word": "street",
+   "s": "s",
+   "partner": "tr",
+   "rest": "eet",
+   "blend": "str",
+   "group": "str",
+   "without": "treat"
+  },
+  {
+   "id": "stripe",
+   "word": "stripe",
+   "s": "s",
+   "partner": "tr",
+   "rest": "ipe",
+   "blend": "str",
+   "group": "str",
+   "without": ""
+  },
+  {
+   "id": "stroller",
+   "word": "stroller",
+   "s": "s",
+   "partner": "tr",
+   "rest": "oller",
+   "blend": "str",
+   "group": "str",
+   "without": ""
+  },
+  {
+   "id": "strong",
+   "word": "strong",
+   "s": "s",
+   "partner": "tr",
+   "rest": "ong",
+   "blend": "str",
+   "group": "str",
+   "without": ""
+  },
+  {
+   "id": "strawberry",
+   "word": "strawberry",
+   "s": "s",
+   "partner": "tr",
+   "rest": "awberry",
+   "blend": "str",
+   "group": "str",
+   "without": ""
+  },
+  {
+   "id": "stretch",
+   "word": "stretch",
+   "s": "s",
+   "partner": "tr",
+   "rest": "etch",
+   "blend": "str",
+   "group": "str",
+   "without": ""
+  },
+  {
+   "id": "stream",
+   "word": "stream",
+   "s": "s",
+   "partner": "tr",
+   "rest": "eam",
+   "blend": "str",
+   "group": "str",
+   "without": ""
+  },
+  {
+   "id": "strap",
+   "word": "strap",
+   "s": "s",
+   "partner": "tr",
+   "rest": "ap",
+   "blend": "str",
+   "group": "str",
+   "without": "trap"
+  },
+  {
+   "id": "splash",
+   "word": "splash",
+   "s": "s",
+   "partner": "pl",
+   "rest": "ash",
+   "blend": "spl",
+   "group": "spl",
+   "without": ""
+  },
+  {
+   "id": "splat",
+   "word": "splat",
+   "s": "s",
+   "partner": "pl",
+   "rest": "at",
+   "blend": "spl",
+   "group": "spl",
+   "without": ""
+  },
+  {
+   "id": "splatter",
+   "word": "splatter",
+   "s": "s",
+   "partner": "pl",
+   "rest": "atter",
+   "blend": "spl",
+   "group": "spl",
+   "without": ""
+  },
+  {
+   "id": "split",
+   "word": "split",
+   "s": "s",
+   "partner": "pl",
+   "rest": "it",
+   "blend": "spl",
+   "group": "spl",
+   "without": ""
+  },
+  {
+   "id": "splinter",
+   "word": "splinter",
+   "s": "s",
+   "partner": "pl",
+   "rest": "inter",
+   "blend": "spl",
+   "group": "spl",
+   "without": ""
+  },
+  {
+   "id": "splotch",
+   "word": "splotch",
+   "s": "s",
+   "partner": "pl",
+   "rest": "otch",
+   "blend": "spl",
+   "group": "spl",
+   "without": ""
+  },
+  {
+   "id": "splendid",
+   "word": "splendid",
+   "s": "s",
+   "partner": "pl",
+   "rest": "endid",
+   "blend": "spl",
+   "group": "spl",
+   "without": ""
+  },
+  {
+   "id": "splint",
+   "word": "splint",
+   "s": "s",
+   "partner": "pl",
+   "rest": "int",
+   "blend": "spl",
+   "group": "spl",
+   "without": ""
+  },
+  {
+   "id": "scream",
+   "word": "scream",
+   "s": "s",
+   "partner": "cr",
+   "rest": "eam",
+   "blend": "scr",
+   "group": "scr",
+   "without": "cream"
+  },
+  {
+   "id": "scratch",
+   "word": "scratch",
+   "s": "s",
+   "partner": "cr",
+   "rest": "atch",
+   "blend": "scr",
+   "group": "scr",
+   "without": ""
+  },
+  {
+   "id": "scrub",
+   "word": "scrub",
+   "s": "s",
+   "partner": "cr",
+   "rest": "ub",
+   "blend": "scr",
+   "group": "scr",
+   "without": ""
+  },
+  {
+   "id": "screen",
+   "word": "screen",
+   "s": "s",
+   "partner": "cr",
+   "rest": "een",
+   "blend": "scr",
+   "group": "scr",
+   "without": ""
+  },
+  {
+   "id": "screw",
+   "word": "screw",
+   "s": "s",
+   "partner": "cr",
+   "rest": "ew",
+   "blend": "scr",
+   "group": "scr",
+   "without": ""
+  },
+  {
+   "id": "scribble",
+   "word": "scribble",
+   "s": "s",
+   "partner": "cr",
+   "rest": "ibble",
+   "blend": "scr",
+   "group": "scr",
+   "without": ""
+  },
+  {
+   "id": "scrape",
+   "word": "scrape",
+   "s": "s",
+   "partner": "cr",
+   "rest": "ape",
+   "blend": "scr",
+   "group": "scr",
+   "without": ""
+  },
+  {
+   "id": "scroll",
+   "word": "scroll",
+   "s": "s",
+   "partner": "cr",
+   "rest": "oll",
+   "blend": "scr",
+   "group": "scr",
+   "without": ""
+  },
+  {
+   "id": "scrunch",
+   "word": "scrunch",
+   "s": "s",
+   "partner": "cr",
+   "rest": "unch",
+   "blend": "scr",
+   "group": "scr",
+   "without": "crunch"
+  },
+  {
+   "id": "scramble",
+   "word": "scramble",
+   "s": "s",
+   "partner": "cr",
+   "rest": "amble",
+   "blend": "scr",
+   "group": "scr",
+   "without": ""
+  }
+ ]
+}
