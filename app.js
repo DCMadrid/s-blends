@@ -13,7 +13,7 @@
       if (dead) return null;
       if (!ctx) {
         try { ctx = new AC(); } catch (e) { dead = true; ctx = null; return null; }
-        master = ctx.createGain(); master.gain.value = on ? 0.9 : 0; master.connect(ctx.destination);
+        master = ctx.createGain(); master.gain.value = on ? 0.8 : 0; master.connect(ctx.destination);
       }
       return ctx;
     });
@@ -48,7 +48,7 @@
       isOn: function () { return on; },
       setOn: safe(function (v) {
         on = !!v;
-        if (master && ctx) master.gain.setTargetAtTime(on ? 0.9 : 0, ctx.currentTime, 0.02);
+        if (master && ctx) master.gain.setTargetAtTime(on ? 0.8 : 0, ctx.currentTime, 0.02);
         if (!on) this.whooshStop();
       }),
       /* soft airy whoosh while S travels; louder and brighter when moving faster */
@@ -61,8 +61,8 @@
           g.gain.value = 0.0001; src.connect(f); f.connect(g); g.connect(master); src.start(now);
           wh = { src: src, f: f, g: g };
         }
-        wh.g.gain.setTargetAtTime(0.03 + sp * 0.07, now, 0.04);
-        wh.f.frequency.setTargetAtTime(800 + sp * 1300, now, 0.05);
+        wh.g.gain.setTargetAtTime(0.02 + sp * 0.05, now, 0.05);
+        wh.f.frequency.setTargetAtTime(700 + sp * 1000, now, 0.06);
       }),
       whooshStop: safe(function () {
         if (!wh || !ctx) return;
@@ -73,28 +73,82 @@
       /* pop when the arms link */
       pop: safe(function () {
         var c = ready(); if (!c) return; var t = c.currentTime + 0.01;
-        tone('sine', 620, 190, t, 0.005, 0.45, 0.14); tone('triangle', 1240, 400, t, 0.003, 0.12, 0.08);
+        tone('sine', 600, 200, t, 0.006, 0.3, 0.14); tone('triangle', 1200, 420, t, 0.004, 0.07, 0.08);
       }),
       /* tap at the "wrist" = the second sound */
       tap: safe(function () {
         var c = ready(); if (!c) return; var t = c.currentTime + 0.01;
         var s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
         s.buffer = noiseBuf(c); f.type = 'bandpass'; f.frequency.value = 2400; f.Q.value = 2.2;
-        env(g, t, 0.002, 0.5, 0.05); s.connect(f); f.connect(g); g.connect(master); s.start(t); s.stop(t + 0.09);
-        tone('triangle', 980, 700, t, 0.002, 0.22, 0.06);
+        env(g, t, 0.003, 0.28, 0.05); s.connect(f); f.connect(g); g.connect(master); s.start(t); s.stop(t + 0.09);
+        tone('triangle', 980, 700, t, 0.003, 0.13, 0.06);
       }),
       /* bright little chime when the word is complete */
-      chime: safe(function () {
-        var c = ready(); if (!c) return; var t = c.currentTime + 0.02;
+      chime: safe(function (soft) {
+        var c = ready(); if (!c) return; var t = c.currentTime + 0.02, k = soft ? 0.6 : 1;
         [784, 988, 1175, 1568].forEach(function (f, i) {
-          tone('sine', f, f, t + i * 0.09, 0.008, 0.22, 0.9); tone('sine', f * 2, f * 2, t + i * 0.09, 0.005, 0.05, 0.4);
+          tone('sine', f, f, t + i * 0.08, 0.01, 0.13 * k, soft ? 0.55 : 0.8); tone('sine', f * 2, f * 2, t + i * 0.08, 0.008, 0.025 * k, 0.3);
         });
       })
     };
   })();
 
+  /* ================= spoken word (Web Speech API; optional, never throws) ================= */
+  var Speech = (function () {
+    var synth = null, voice = null, primed = false;
+    try { synth = window.speechSynthesis || null; } catch (e) { synth = null; }
+    var U = window.SpeechSynthesisUtterance || null;
+    function ok() { return !!(synth && U && typeof synth.speak === 'function'); }
+    function pick() {
+      try {
+        var vs = (synth.getVoices && synth.getVoices()) || [], best = null, score = -1;
+        vs.forEach(function (v) {
+          var l = String(v.lang || '').replace('_', '-').toLowerCase(), n = String(v.name || ''), sc = -1;
+          if (l === 'en-us') sc = 3; else if (l.indexOf('en') === 0) sc = 2;
+          if (sc < 0) return;
+          if (v.localService === true) sc += 2;            // on-device voice: the word is not sent to a speech service
+          if (/samantha|allison|ava|susan|zira|jenny|aria/i.test(n)) sc += 1;
+          if (/novelty|whisper|bad news|bells|boing|bubbles|cellos|zarvox|trinoids|albert|jester|organ|superstar|wobble|hysterical|grandma|grandpa/i.test(n)) sc -= 3;
+          if (sc > score) { score = sc; best = v; }
+        });
+        if (best) voice = best;
+      } catch (e) { /* ignore */ }
+    }
+    if (ok()) {
+      pick();
+      try { if (synth.addEventListener) synth.addEventListener('voiceschanged', pick); else synth.onvoiceschanged = pick; } catch (e) { /* ignore */ }
+    }
+    function utter(text, vol) {
+      var u = new U(text);
+      u.lang = (voice && voice.lang) || 'en-US'; if (voice) u.voice = voice;
+      u.rate = 0.85; u.pitch = 1.1; u.volume = vol;
+      return u;
+    }
+    // iOS Safari only lets speech start from a user gesture: speak one silent, empty utterance on the first touch
+    var prime = function () {
+      if (primed || !ok()) return; primed = true;
+      try { synth.speak(utter('', 0)); } catch (e) { /* ignore */ }
+      ['pointerdown', 'touchend', 'keydown', 'click'].forEach(function (t) { document.removeEventListener(t, prime, true); });
+    };
+    ['pointerdown', 'touchend', 'keydown', 'click'].forEach(function (t) { document.addEventListener(t, prime, true); });
+    return {
+      available: ok,
+      cancel: function () { try { if (ok() && (synth.speaking || synth.pending)) synth.cancel(); } catch (e) { /* ignore */ } },
+      say: function (text) {
+        if (!text || !ok() || !Sound.isOn()) return false;
+        try {
+          if (synth.speaking || synth.pending) synth.cancel();
+          if (synth.paused && synth.resume) synth.resume();
+          if (!voice) pick();
+          synth.speak(utter(String(text), 1));
+          return true;
+        } catch (e) { return false; }
+      }
+    };
+  })();
+
   /* ================= data + elements ================= */
-  var DATA, WORDS, GROUPS = {}, LET = {}, FR;
+  var DATA, WORDS, GROUPS = {}, LET = {}, FR, PAIRS = [];
   var NS = 'http://www.w3.org/2000/svg';
   var $ = function (id) { return document.getElementById(id); };
   var app = $('app'), stage = $('stage'), wrap = $('stageWrap'), mover = $('mover'), track = $('track'), handle = $('handle');
@@ -102,10 +156,11 @@
     buddies: $('buddies'), armLayer: $('armLayer'), ribbon: $('ribbon'), clip: $('ribbonClipRect'), right: $('rightChain'),
     tapRing: $('tapRing'), tapCircle: $('tapCircle'), wordRow: $('wordRow'), burst: $('burst'), blendG: $('blendG'), restG: $('restG'),
     without: $('withoutText'), caption: $('caption'), say: $('sayIt'), secLabel: $('secLabel'), fill2: $('trackFill'),
-    leave: $('btnLeave'), leaveLabel: $('leaveLabel')
+    leave: $('btnLeave'), leaveLabel: $('leaveLabel'), hear: $('btnHear'), live: $('liveMsg'),
+    pairCard: $('pairCard'), pairSvg: $('pairSvg'), which: $('whichRow'), whichA: $('whichA'), whichB: $('whichB'), stageTag: $('stageTag')
   };
   var H = 440;
-  var st = { idx: -1, mode: 'drag', pos: 0, link: 0, done: false, locking: false, lonely: false, say: false, G: null, timers: [], raf: 0 };
+  var st = { idx: -1, pair: -1, mode: 'drag', pos: 0, link: 0, done: false, locking: false, lonely: false, say: false, G: null, timers: [], raf: 0 };
 
   /* ---------- helpers ---------- */
   function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
@@ -115,6 +170,11 @@
     var k = norm(w), k2 = k.replace(/-/g, '');
     for (var i = 0; i < WORDS.length; i++) if (WORDS[i].id === k || norm(WORDS[i].word) === k) return i;
     for (var j = 0; j < WORDS.length; j++) if (norm(WORDS[j].word).replace(/-/g, '') === k2) return j;   // "skate board" -> skateboard
+    return -1;
+  }
+  function findPair(q) {
+    var k = norm(q).replace(/^pair-/, '');
+    for (var i = 0; i < PAIRS.length; i++) { var w = WORDS[PAIRS[i]]; if (w.id === k || norm(w.without) === k) return i; }
     return -1;
   }
   function mk(tag, attrs, parent, cls) {
@@ -133,19 +193,23 @@
   function letterStyle(ch) { return LET[ch] || { color: '#7A7F99', ink: '#FFFFFF' }; }
   function later(fn, ms) { st.timers.push(setTimeout(fn, ms)); }
   function clearTimers() { st.timers.forEach(clearTimeout); st.timers = []; stopTween(); }
-  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var mq = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+  function reduced() { return !!(mq && mq.matches); }
   function stopTween() { st.tok = (st.tok || 0) + 1; if (st.raf) cancelAnimationFrame(st.raf); st.raf = 0; if (st.tweenFallback) clearTimeout(st.tweenFallback); }
-  function tween(from, to, ms, apply, then) {
+  var easeOut = function (t) { return 1 - Math.pow(1 - t, 3); };
+  var easeInOut = function (t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
+  function tween(from, to, ms, apply, then, ease) {
     stopTween();
     var tok = st.tok, t0 = null, fin = false;
-    ms = reduced ? 1 : ms;
+    ease = ease || easeOut;
+    ms = reduced() ? 1 : ms;
     function finish() { if (fin || tok !== st.tok) return; fin = true; st.raf = 0; clearTimeout(st.tweenFallback); apply(to); if (then && tok === st.tok) then(); }
     function f(now) {
       if (fin || tok !== st.tok) return;
       if (t0 === null) t0 = now;
-      var t = clamp((now - t0) / ms, 0, 1), e = 1 - Math.pow(1 - t, 3);
+      var t = clamp((now - t0) / ms, 0, 1);
       if (t >= 1) { finish(); return; }
-      apply(lerp(from, to, e));
+      apply(lerp(from, to, ease(t)));
       if (tok === st.tok) st.raf = requestAnimationFrame(f);
     }
     st.raf = requestAnimationFrame(f);
@@ -157,6 +221,7 @@
     return { left: (friendLeft ? w.s : w.partner).split(''), right: (friendLeft ? w.partner : w.s).split('') };
   }
   function measure(node, txt, size) { node.textContent = txt; node.style.fontSize = size + 'px'; return txt ? node.getComputedTextLength() : 0; }
+  function announce(t) { el.live.textContent = ''; later(function () { el.live.textContent = t; }, 30); }
 
   /* ---------- characters ---------- */
   function buildBuddy(parent, ch, cx, CY, R) {
@@ -181,12 +246,12 @@
     var h = mk('circle', { cx: 0, cy: 0, r: 0, fill: color }, g, 'hand');
     return { g: g, p: p, h: h };
   }
-  function setArm(a, A, B, bulge, R) {
+  function setArm(a, A, B, bulge, R, handR) {
     var mx = (A[0] + B[0]) / 2, my = (A[1] + B[1]) / 2, dx = B[0] - A[0], dy = B[1] - A[1], L = Math.sqrt(dx * dx + dy * dy) || 1;
     var cx = mx - dy / L * bulge, cy = my + dx / L * bulge;
     a.p.setAttribute('d', 'M' + A[0].toFixed(1) + ' ' + A[1].toFixed(1) + 'Q' + cx.toFixed(1) + ' ' + cy.toFixed(1) + ' ' + B[0].toFixed(1) + ' ' + B[1].toFixed(1));
     a.p.style.strokeWidth = (R * 0.17).toFixed(1) + 'px';
-    a.h.setAttribute('cx', B[0].toFixed(1)); a.h.setAttribute('cy', B[1].toFixed(1)); a.h.setAttribute('r', (R * 0.15).toFixed(1));
+    a.h.setAttribute('cx', B[0].toFixed(1)); a.h.setAttribute('cy', B[1].toFixed(1)); a.h.setAttribute('r', (R * (handR || 0.15)).toFixed(1));
   }
   function setMouth(b, CY, R, m) {   // m: -1 frown, 1 smile, 2 big open smile
     var hw = R * (m > 0 ? 0.2 + 0.07 * m : 0.18), y = CY + R * (m < 0 ? 0.7 : 0.58), d = R * 0.12 * m, x = b.cx;
@@ -203,8 +268,8 @@
     var W = Math.round(clamp(H * aspect, 640, 1200));
     stage.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
     var sd = sides(w), nL = sd.left.length, nR = sd.right.length;
-    var M = 16, R = W >= 900 ? 64 : 56, CY = 200, HOLD = 2 * R + 46, LINK = 2 * R + 66, LIFT = 54, WY = 362;
-    // right chain (the buddy whose arm is the "road"), then the mover (S) on the left
+    var M = 16, R = W >= 900 ? 64 : 58, CY = 196, HOLD = 2 * R + 46, LINK = 2 * R + 66, LIFT = 40, WY = 364;
+    // right chain (the buddy whose arm is the track), then the mover (S) on the left
     var rx = []; rx[nR - 1] = W - M - R * 1.25;
     for (var i = nR - 2; i >= 0; i--) rx[i] = rx[i + 1] - HOLD;
     var lead0 = M + R * 1.3 + (nL - 1) * HOLD;                 // start x of the mover's leading (rightmost) letter
@@ -212,9 +277,11 @@
     var yA = CY + R * 0.42;                                     // the outstretched arm runs along here
     clear(el.armLayer); clear(el.ribbon); clear(el.right); clear(mover); clear(el.blendG); clear(el.restG); clear(el.burst);
     var G = { W: W, R: R, CY: CY, yA: yA, lead0: lead0, snapPos: snapPos, rx: rx, nL: nL, nR: nR, LIFT: LIFT };
-    // the long arm (drawn under the ribbon)
+    // where S is heading: a soft dashed "seat" next to the buddy
+    G.goal = mk('circle', { cx: leadEnd.toFixed(1), cy: CY, r: R, stroke: letterStyle(sd.left[nL - 1]).color }, el.armLayer, 'goal');
+    // the long arm = the track (drawn under the ribbon); its open hand waits for S
     var first = buildBuddyPlaceholder(sd.right[0]);
-    G.longArm = arm(el.armLayer, first.dark);
+    G.longArm = arm(el.armLayer, first.dark); G.longArm.g.classList.add('long-arm');
     G.longA = [rx[0] - R * 0.84, CY + R * 0.28];
     G.longB = [lead0 + R * 1.28, yA];
     G.meet = [(leadEnd + rx[0]) / 2, CY + R * 0.02];
@@ -231,7 +298,6 @@
     // characters
     G.rightB = sd.right.map(function (ch, j) { return buildBuddy(el.right, ch, rx[j], CY, R); });
     G.rightB[0].g.classList.add('tap-target');
-    G.rightArms = [];
     // hand-holding inside the right chain (e.g. T holding R in "str")
     for (var j = 0; j + 1 < nR; j++) {
       var a1 = arm(el.right, G.rightB[j].dark), a2 = arm(el.right, G.rightB[j + 1].dark);
@@ -241,10 +307,11 @@
       setArm(a2, [rx[j + 1] - R * 0.84, CY + R * 0.28], [mid + 5, CY + R * 0.5], -7, R);
     }
     G.rightOuter = arm(el.right, G.rightB[nR - 1].dark); el.right.insertBefore(G.rightOuter.g, el.right.firstChild);
-    // mover (S); local coords = start position, moved with a transform
-    mk('rect', { x: lead0 - (nL - 1) * HOLD - R * 1.3, y: CY - R * 1.35, width: (nL - 1) * HOLD + R * 2.7, height: R * 2.7, rx: R }, mover, 'hit');
+    // mover (S); local coords = start position, moved with a transform. Generous invisible hit area for small fingers.
+    mk('rect', { x: lead0 - (nL - 1) * HOLD - R * 1.6, y: CY - R * 1.6, width: (nL - 1) * HOLD + R * 3.2, height: R * 3.2, rx: R * 1.2 }, mover, 'hit');
     var lx = []; for (var q = 0; q < nL; q++) lx[q] = lead0 - (nL - 1 - q) * HOLD;
     G.leftB = sd.left.map(function (ch, q2) { return buildBuddy(mover, ch, lx[q2], CY, R); });
+    G.leftB[nL - 1].g.classList.add('lead');
     G.leadArm = arm(mover, G.leftB[nL - 1].dark); mover.insertBefore(G.leadArm.g, mover.firstChild);
     G.leftOuter = arm(mover, G.leftB[0].dark); mover.insertBefore(G.leftOuter.g, mover.firstChild);
     for (var q3 = 0; q3 + 1 < nL; q3++) {
@@ -258,16 +325,18 @@
     G.heart = mk('path', { d: heartPath(G.meet[0], G.meet[1] - R * 0.62, R * 0.2) }, el.armLayer, 'heart');
     el.tapCircle.setAttribute('cx', rx[0]); el.tapCircle.setAttribute('cy', CY); el.tapCircle.setAttribute('r', R + 8);
     el.tapCircle.setAttribute('stroke', letterStyle(sd.right[0]).color);
-    // where everything sits when done (centered and lifted) or when S is left out (only the buddy, centered)
+    // where everything sits when done (centered and lifted a little) or when S is left out (only the buddy, centered)
     var leftEdge = lx[0] + snapPos - R * 1.3, rightEdge = rx[nR - 1] + R * 1.3;
     G.shiftDone = W / 2 - (leftEdge + rightEdge) / 2;
     G.shiftLonely = W / 2 - ((rx[0] - R * 1.3) + rightEdge) / 2;
-    // the word row: friend letters + partner letters (in their colours) + rest (dark ink)
-    var F = W >= 900 ? 116 : 104, segs = sd.left.concat(sd.right).map(function (ch) { return { t: ch, color: letterStyle(ch).color }; });
+    // the word row is on screen from the start (the child should know the word). Letters stay put; at the link the
+    // blend letters light up in their buddies' colours, bounce together and get a joining bar underneath.
+    var F = W >= 900 ? 112 : 100, segs = sd.left.concat(sd.right).map(function (ch) { return { t: ch, color: letterStyle(ch).color }; });
     segs.push({ t: w.rest, color: null });
+    var bar = mk('rect', { x: 0, y: 0, width: 0, height: 0 }, el.blendG, 'link-bar');
     var nodes = segs.map(function (s) {
       var n = mk('text', { x: 0, y: WY, 'dominant-baseline': 'central' }, s.color ? el.blendG : el.restG, 'word-text seg' + (s.color ? ' blend' : ' rest'));
-      if (s.color) n.setAttribute('fill', shade(s.color, -0.12));
+      if (s.color) n.style.setProperty('--c', shade(s.color, -0.12));
       return n;
     });
     var widths, total, tries = 0;
@@ -279,8 +348,10 @@
     }
     var x0 = W / 2 - total / 2, xcur = x0;
     nodes.forEach(function (n, i3) { n.setAttribute('x', xcur.toFixed(1)); xcur += widths[i3]; });
-    G.restShift = Math.min(220, W - (x0 + total) + 40);
-    el.restG.style.setProperty('--rest-shift', G.restShift + 'px');
+    var nBlend = segs.length - 1, bw = 0; for (var i4 = 0; i4 < nBlend; i4++) bw += widths[i4];
+    bar.setAttribute('x', (x0 + 2).toFixed(1)); bar.setAttribute('width', Math.max(0, bw - 4).toFixed(1));
+    bar.setAttribute('y', (WY + F * 0.44).toFixed(1)); bar.setAttribute('height', (F * 0.09).toFixed(1)); bar.setAttribute('rx', (F * 0.045).toFixed(1));
+    bar.setAttribute('fill', letterStyle(sd.left[0]).color);
     measure(el.without, w.without || '', F); el.without.setAttribute('x', W / 2); el.without.setAttribute('y', WY);
     // star burst around the finished word
     var rxB = total / 2 + 46, ryB = F * 0.58 + 6, cxB = W / 2;
@@ -306,15 +377,41 @@
       'C' + (x + s * 0.7) + ' ' + (y - s * 1.3) + ' ' + (x + s * 1.6) + ' ' + (y - s * 0.2) + ' ' + x + ' ' + (y + s * 0.9) + 'Z';
   }
 
+  /* ---------- minimal-pair card: the buddy alone with the no-S word ---------- */
+  function buildPairCard(w) {
+    var svg = el.pairSvg; clear(svg);
+    var box = el.pairCard.getBoundingClientRect(), wide = box.height > 0 && box.width / box.height > 1.6;
+    var sd = sides(w), n = sd.right.length, R = 54, HOLD = 2 * R + 40, VW = wide ? 640 : 320, VH = wide ? 220 : 300, CY = wide ? 104 : 118;
+    var ccx = wide ? 190 : VW / 2;
+    svg.setAttribute('viewBox', '0 0 ' + VW + ' ' + VH);
+    var x0 = ccx - (n - 1) * HOLD / 2, g = mk('g', {}, svg, 'pair-chain');
+    var bs = sd.right.map(function (ch, j) { return buildBuddy(g, ch, x0 + j * HOLD, CY, R); });
+    for (var j = 0; j + 1 < n; j++) {
+      var mid = (bs[j].cx + bs[j + 1].cx) / 2, a1 = arm(g, bs[j].dark), a2 = arm(g, bs[j + 1].dark);
+      g.insertBefore(a1.g, g.firstChild); g.insertBefore(a2.g, g.firstChild);
+      setArm(a1, [bs[j].cx + R * 0.84, CY + R * 0.28], [mid - 4, CY + R * 0.5], 7, R);
+      setArm(a2, [bs[j + 1].cx - R * 0.84, CY + R * 0.28], [mid + 4, CY + R * 0.5], -7, R);
+    }
+    var aL = arm(g, bs[0].dark), aR = arm(g, bs[n - 1].dark);
+    g.insertBefore(aL.g, g.firstChild); g.insertBefore(aR.g, g.firstChild);
+    setArm(aL, [bs[0].cx - R * 0.84, CY + R * 0.28], [bs[0].cx - R * 1.15, CY + R * 1.0], -6, R);          // droopy: nobody to hold
+    setArm(aR, [bs[n - 1].cx + R * 0.84, CY + R * 0.28], [bs[n - 1].cx + R * 1.15, CY + R * 1.0], 6, R);
+    bs.forEach(function (b) { setMouth(b, CY, R, -1); });
+    var tx = wide ? 470 : VW / 2, maxW = wide ? 300 : VW - 24;
+    var t = mk('text', { x: tx, y: wide ? 112 : 252, 'text-anchor': 'middle', 'dominant-baseline': 'central' }, svg, 'word-text pair-word');
+    var F = wide ? 96 : 84, wd = measure(t, w.without, F); if (wd > maxW) measure(t, w.without, Math.floor(F * maxW / wd));
+  }
+
   /* ---------- state -> view ---------- */
+  function shownWord() { var w = WORDS[st.idx]; return !w ? '' : st.lonely ? w.without : w.word; }
   function render() {
     var G = st.G, w = WORDS[st.idx]; if (!G || !w) return;
     var R = G.R, CY = G.CY, pos = st.pos, L = st.link, p = G.snapPos > 0 ? pos / G.snapPos : 1;
     mover.style.transform = 'translate(' + pos.toFixed(1) + 'px,0px)';
     el.clip.setAttribute('width', Math.max(0, pos).toFixed(1));
-    // the buddy's long arm: reaches out to S, then curls in to link arms
+    // the buddy's long arm is the track: it reaches out to S with an open hand, then curls in to link arms
     if (st.lonely) setArm(G.longArm, G.longA, [G.longA[0] - R * 0.3, CY + R * 0.95], -6, R);   // droopy, nobody to hold
-    else setArm(G.longArm, G.longA, [lerp(G.longB[0], G.meet[0] - 7, L), lerp(G.longB[1], G.meet[1], L)], lerp(8, -24, L), R);
+    else setArm(G.longArm, G.longA, [lerp(G.longB[0], G.meet[0] - 7, L), lerp(G.longB[1], G.meet[1], L)], lerp(8, -24, L), R, lerp(0.21, 0.15, L));
     // S's leading hand slides along that arm, then hooks on
     var lead = G.lx[G.nL - 1], sh = [lead + R * 0.84, CY + R * 0.28];
     var handPlay = [lead + R * 1.22, G.yA - 2], handLink = [G.meet[0] + 7 - G.snapPos, G.meet[1]];
@@ -330,6 +427,7 @@
     stage.classList.toggle('done', st.done);
     stage.classList.toggle('lonely', st.lonely);
     stage.classList.toggle('linked', L > 0.98);
+    stage.classList.toggle('moving', pos > 0.5 || st.locking);
     var shift = st.done ? G.shiftDone : st.lonely ? G.shiftLonely : 0, lift = st.done || st.lonely ? -G.LIFT : 0;
     el.buddies.style.transform = 'translate(' + shift.toFixed(1) + 'px,' + lift + 'px)';
     var pct = Math.round(clamp(st.done ? 1 : p, 0, 1) * 100);
@@ -339,10 +437,13 @@
     app.dataset.progress = pct; app.dataset.done = st.done ? '1' : '0'; app.dataset.word = w.id;
     app.dataset.view = st.lonely ? 'lonely' : st.done ? 'done' : 'play';
     app.dataset.link = L.toFixed(2);
-    var hasWithout = !!w.without;
-    el.leave.hidden = !hasWithout;
+    app.classList.toggle('hint', !st.done && !st.lonely && !st.locking && pct === 0);
+    var pairMode = st.pair >= 0;
+    el.leave.hidden = !w.without || pairMode;   // available any time (not in a minimal-pair round, which already shows both words)
     el.leave.setAttribute('aria-pressed', String(st.lonely));
     el.leaveLabel.textContent = st.lonely ? 'Bring ' + FR.name + ' back' : 'Leave ' + FR.name + ' out?';
+    el.hear.hidden = !(st.done || st.lonely);
+    el.hear.setAttribute('aria-label', 'Hear “' + shownWord() + '” again');
     renderSay();
   }
   function renderSay() {
@@ -352,8 +453,9 @@
     var b = document.createElement('b');
     if (st.lonely) { el.say.appendChild(document.createTextNode('Without ' + FR.name + ': ')); b.textContent = w.without; el.say.appendChild(b); }
     else if (st.done) { el.say.appendChild(document.createTextNode('Say it! ')); b.textContent = w.word; el.say.appendChild(b); }
-    else el.say.textContent = 'Hold “' + new Array(6).join(FR.hold || 's') + '” as ' + FR.name + ' slides, then “' + w.partner + '”';
+    else { el.say.appendChild(document.createTextNode('Hold “' + new Array(6).join(FR.hold || 's') + '”, then “' + w.partner + '”: ')); b.textContent = w.word; el.say.appendChild(b); }
   }
+  function speakShown() { Speech.say(shownWord()); }
   function setPos(pos) {
     var G = st.G; if (!G || st.done || st.locking || st.lonely) return;
     st.pos = clamp(pos, 0, G.snapPos);
@@ -363,24 +465,27 @@
   function complete() {
     if (st.done || st.locking || !st.G || st.lonely) return;
     st.locking = true; Sound.whooshStop(); app.classList.add('anim');
-    var G = st.G, from = st.pos;
+    var G = st.G, from = st.pos, idx = st.idx;
     tween(from, G.snapPos, 120 + 260 * (1 - from / G.snapPos), function (v) { st.pos = v; render(); }, function () {   // 1) S slides the last bit
-      tween(0, 1, 460, function (v) { st.link = v; render(); }, function () {                                     // 2) arms swing in and link
+      tween(0, 1, 480, function (v) { st.link = v; render(); }, function () {                                     // 2) arms swing in and link
         Sound.pop(); stage.classList.add('popped');
         later(function () { stage.classList.add('tapped'); Sound.tap(); }, 140);                                      // 3) tap-pop on the second sound
-        later(function () {                                                                                            // 4) the word slides together
+        later(function () {                                                                                            // 4) blend letters light up + star burst
           st.locking = false; st.done = true; render();
-          mover.setAttribute('aria-label', 'Done: ' + WORDS[st.idx].word);
-          later(function () { Sound.chime(); }, 300);
+          var word = WORDS[idx].word;
+          mover.setAttribute('aria-label', FR.name + ' linked arms. The word is ' + word + '.');
+          announce('Linked! ' + word);
+          Sound.chime(Speech.available());
+          later(function () { if (st.done && st.idx === idx && !st.lonely) Speech.say(word); }, 520);               // 5) say the word, after the chime's attack
         }, 420);
-      });
+      }, easeInOut);
     });
   }
   function resetView() {
-    clearTimers(); Sound.whooshStop();
+    clearTimers(); Sound.whooshStop(); Speech.cancel();
     stage.classList.remove('popped', 'tapped');
     st.locking = false; st.done = false; st.link = 0; st.lonely = false; st.fromLonely = false;
-    mover.setAttribute('aria-label', FR.name + '. Drag along the arm.');
+    mover.setAttribute('aria-label', FR.name + ' character. Drag along the arm to link arms.');
   }
   function reset() {
     var from = st.pos; resetView(); render();
@@ -388,7 +493,7 @@
   }
   function toggleLonely() {
     var w = WORDS[st.idx]; if (!w || !w.without) return;
-    if (!st.lonely) { resetView(); st.pos = 0; st.lonely = true; render(); }
+    if (!st.lonely) { resetView(); st.pos = 0; st.lonely = true; render(); Speech.say(w.without); }
     else {
       resetView(); st.pos = 0; st.fromLonely = true; render();
       later(function () { st.fromLonely = true; complete(); }, 260);
@@ -398,24 +503,53 @@
   /* ---------- word / mode / picker ---------- */
   function setURL(q) { try { history.replaceState(null, '', location.pathname + q); } catch (e) { /* ignore */ } }
   function updateURL() {
-    var w = WORDS[st.idx], q = w ? '?w=' + encodeURIComponent(w.word) : '';
+    var w = WORDS[st.idx], q = !w ? '' : st.pair >= 0 ? '?mp=' + encodeURIComponent(w.id) : '?w=' + encodeURIComponent(w.word);
     if (st.mode === 'slide') q += (q ? '&' : '?') + 'm=slider';
     setURL(q);
   }
-  function loadWord(i) {
-    st.idx = (i + WORDS.length) % WORDS.length;
-    var w = WORDS[st.idx], g = GROUPS[w.group];
-    var list = WORDS.filter(function (x) { return x.group === w.group; }), within = list.indexOf(w) + 1;
+  function setLabel(chipText, bg, ink, rest) {
     el.secLabel.textContent = '';
-    var chip = document.createElement('b'); chip.textContent = g.name; chip.style.background = g.color; chip.style.color = g.ink;
-    el.secLabel.appendChild(chip); el.secLabel.appendChild(document.createTextNode('  word ' + within + ' of ' + list.length));
+    var chip = document.createElement('b'); chip.textContent = chipText; chip.style.background = bg; chip.style.color = ink;
+    el.secLabel.appendChild(chip); el.secLabel.appendChild(document.createTextNode('  ' + rest));
+  }
+  function whichLabel(btn, text, sLetter) {
+    btn.textContent = '';
+    var s = document.createElement('span'); s.className = 'which-word';
+    if (sLetter) { var b = document.createElement('b'); b.className = 'which-s'; b.textContent = text.charAt(0); s.appendChild(b); s.appendChild(document.createTextNode(text.slice(1))); }
+    else s.textContent = text;
+    btn.appendChild(s);
+    var ic = document.createElementNS(NS, 'svg'); ic.setAttribute('viewBox', '0 0 24 24'); ic.setAttribute('aria-hidden', 'true');
+    mk('path', { d: 'M4 9v6h4l5 4V5L8 9z' }, ic); mk('path', { d: 'M16 8.5a5 5 0 0 1 0 7' }, ic);
+    btn.appendChild(ic); btn.setAttribute('aria-label', 'Hear “' + text + '”');
+  }
+  function loadWord(i, pairIdx) {
+    Speech.cancel();
+    st.idx = (i + WORDS.length) % WORDS.length;
+    st.pair = pairIdx === undefined ? -1 : pairIdx;
+    var w = WORDS[st.idx], g = GROUPS[w.group], pairMode = st.pair >= 0;
+    if (pairMode) setLabel('minimal pairs', '#5236C4', '#FFFFFF', 'pair ' + (st.pair + 1) + ' of ' + PAIRS.length);
+    else {
+      var list = WORDS.filter(function (x) { return x.group === w.group; });
+      setLabel(g.name, g.color, g.ink, 'word ' + (list.indexOf(w) + 1) + ' of ' + list.length);
+    }
     app.style.setProperty('--gbg', g.bg); app.style.setProperty('--gc', g.color);
-    stage.setAttribute('aria-label', FR.name + ' and ' + w.partner.toUpperCase() + ' make ' + w.blend);
+    app.classList.toggle('pair-mode', pairMode);
+    el.pairCard.hidden = !pairMode; el.which.hidden = !pairMode; el.stageTag.hidden = !pairMode;
+    if (pairMode) {
+      buildPairCard(w);
+      el.pairCard.setAttribute('aria-label', 'Without ' + FR.name + ': ' + w.without + '. Tap to hear it.');
+      el.stageTag.textContent = 'With ' + FR.name;
+      whichLabel(el.whichA, w.without, false); whichLabel(el.whichB, w.word, true);
+    }
+    stage.setAttribute('aria-label', FR.name + ' and ' + w.partner.toUpperCase() + ' link arms to make ' + w.word);
     $('picker').hidden = true; $('play').hidden = false;
     resetView(); st.pos = 0; app.classList.remove('anim');
     layout(); updateURL();
     requestAnimationFrame(function () { requestAnimationFrame(function () { app.classList.add('anim'); }); });
   }
+  function loadPair(k) { k = (k + PAIRS.length) % PAIRS.length; loadWord(PAIRS[k], k); }
+  function step(d) { if (st.pair >= 0) loadPair(st.pair + d); else loadWord(st.idx + d); }
+  function flash(node) { node.classList.remove('flash'); void node.getBoundingClientRect(); node.classList.add('flash'); later(function () { node.classList.remove('flash'); }, 700); }
   function setMode(m) {
     st.mode = m === 'slide' ? 'slide' : 'drag';
     var slide = st.mode === 'slide';
@@ -431,36 +565,53 @@
     sd.left.concat(sd.right).forEach(function (ch) { var s = document.createElement('span'); s.className = 'bl'; s.textContent = ch; s.style.color = shade(letterStyle(ch).color, -0.12); parent.appendChild(s); });
     parent.appendChild(document.createTextNode(w.rest));
   }
+  function groupBox(id, name, sub, bg, color, ink) {
+    var box = document.createElement('div'); box.className = 'group'; box.id = 'grp-' + id;
+    box.style.setProperty('--gbg', bg); box.style.setProperty('--gc', color);
+    var h = document.createElement('h2'), chip = document.createElement('span');
+    chip.className = 'chip'; chip.textContent = name; chip.style.background = color; chip.style.color = ink; h.appendChild(chip);
+    if (sub) { var sm = document.createElement('small'); sm.textContent = sub; h.appendChild(sm); }
+    box.appendChild(h);
+    var grid = document.createElement('div'); grid.className = 'word-grid'; box.appendChild(grid);
+    return { box: box, grid: grid };
+  }
   function buildPicker() {
     var groups = $('groups');
     DATA.groups.forEach(function (g) {
-      var box = document.createElement('div'); box.className = 'group'; box.id = 'grp-' + g.id;
-      box.style.setProperty('--gbg', g.bg); box.style.setProperty('--gc', g.color);
-      var h = document.createElement('h2'), chip = document.createElement('span');
-      chip.className = 'chip'; chip.textContent = g.name; chip.style.background = g.color; chip.style.color = g.ink; h.appendChild(chip);
-      if (g.sub) { var sm = document.createElement('small'); sm.textContent = g.sub; h.appendChild(sm); }
-      box.appendChild(h);
-      var grid = document.createElement('div'); grid.className = 'word-grid';
+      var gb = groupBox(g.id, g.name, g.sub, g.bg, g.color, g.ink);
       WORDS.forEach(function (w, i) {
         if (w.group !== g.id) return;
         var a = document.createElement('a'); a.className = 'word-btn'; a.href = '?w=' + encodeURIComponent(w.word);
         a.dataset.w = w.id; blendSpan(a, w);
         a.addEventListener('click', function (e) { e.preventDefault(); loadWord(i); });
-        grid.appendChild(a);
+        gb.grid.appendChild(a);
       });
-      box.appendChild(grid); groups.appendChild(box);
+      groups.appendChild(gb.box);
     });
+    if (PAIRS.length) {
+      var pb = groupBox('pairs', 'minimal pairs', 'with S and without S', '#F4F1FF', '#5236C4', '#FFFFFF');
+      pb.box.classList.add('group-pairs');
+      PAIRS.forEach(function (wi, k) {
+        var w = WORDS[wi], a = document.createElement('a'); a.className = 'word-btn pair-btn'; a.href = '?mp=' + encodeURIComponent(w.id);
+        a.dataset.mp = w.id; blendSpan(a, w);
+        var vs = document.createElement('span'); vs.className = 'vs'; vs.textContent = '·'; a.appendChild(vs);
+        a.appendChild(document.createTextNode(w.without));
+        a.addEventListener('click', function (e) { e.preventDefault(); loadPair(k); });
+        pb.grid.appendChild(a);
+      });
+      groups.appendChild(pb.box);
+    }
   }
   function showPicker(gid, missing) {
     resetView();
     $('play').hidden = true; $('picker').hidden = false;
     var nf = $('notFound');
-    if (missing) { nf.hidden = false; nf.textContent = 'Couldn’t find the word “' + missing + '”. Pick one below.'; } else nf.hidden = true;
+    if (missing) { nf.hidden = false; nf.textContent = 'Couldn’t find “' + missing + '”. Pick one below.'; } else nf.hidden = true;
     document.querySelectorAll('.group').forEach(function (g) { g.classList.toggle('hl', g.id === 'grp-' + gid); });
     var target = gid && $('grp-' + gid);
     if (target) target.scrollIntoView({ block: 'start' }); else $('picker').scrollTop = 0;
-    st.idx = -1; app.dataset.word = ''; app.dataset.view = 'picker';
-    var q = gid && GROUPS[gid] ? '?g=' + gid : '';
+    st.idx = -1; st.pair = -1; app.dataset.word = ''; app.dataset.view = 'picker';
+    var q = gid && (GROUPS[gid] || gid === 'pairs') ? '?g=' + gid : '';
     if (st.mode === 'slide') q += (q ? '&' : '?') + 'm=slider';
     setURL(q);
   }
@@ -474,7 +625,7 @@
     try { mover.setPointerCapture(e.pointerId); } catch (x) {}
     stopTween();
     drag = { id: e.pointerId, x: e.clientX, pos: st.pos, k: svgScale(), lx: e.clientX, lt: performance.now() };
-    app.classList.remove('anim'); mover.classList.add('dragging');
+    app.classList.remove('anim', 'hint'); mover.classList.add('dragging');
   });
   function speedOf(o, x) {   // screen px per ms, smoothed
     var now = performance.now(), dt = Math.max(8, now - o.lt), v = Math.abs(x - o.lx) / dt;
@@ -510,7 +661,7 @@
     e.preventDefault();
     try { track.setPointerCapture(e.pointerId); } catch (x) {}
     stopTween();
-    app.classList.remove('anim'); track.classList.add('dragging');
+    app.classList.remove('anim', 'hint'); track.classList.add('dragging');
     var hr = handle.getBoundingClientRect(), onHandle = e.clientX >= hr.left && e.clientX <= hr.right;
     sl = { id: e.pointerId, off: onHandle ? e.clientX - (hr.left + hr.width / 2) : 0, lx: e.clientX, lt: performance.now() };
     if (!onHandle) slideTo(e.clientX);
@@ -534,9 +685,9 @@
   /* keyboard: arrows move S / the handle, End finishes, PageDown/PageUp = next/prev (presentation clickers) */
   function keyStep(e) {
     if (!st.G || st.done || st.locking || st.lonely) return;
-    var step = st.G.snapPos / 20, target = null;
-    if (e.key === 'ArrowRight') target = st.pos + step;
-    else if (e.key === 'ArrowLeft') target = st.pos - step;
+    var step0 = st.G.snapPos / 20, target = null;
+    if (e.key === 'ArrowRight') target = st.pos + step0;
+    else if (e.key === 'ArrowLeft') target = st.pos - step0;
     else if (e.key === 'End') { e.preventDefault(); complete(); return; }
     else if (e.key === 'Home') target = 0;
     if (target === null) return;
@@ -548,8 +699,8 @@
   mover.addEventListener('keydown', keyStep); track.addEventListener('keydown', keyStep);
   document.addEventListener('keydown', function (e) {
     if ($('play').hidden || st.idx < 0) return;
-    if (e.key === 'PageDown') { e.preventDefault(); loadWord(st.idx + 1); }
-    else if (e.key === 'PageUp') { e.preventDefault(); loadWord(st.idx - 1); }
+    if (e.key === 'PageDown') { e.preventDefault(); step(1); }
+    else if (e.key === 'PageUp') { e.preventDefault(); step(-1); }
   });
 
   /* stop page scroll, bounce and pinch-zoom while touching the play area (iOS Safari) */
@@ -559,12 +710,23 @@
   document.addEventListener('contextmenu', function (e) { if (!$('play').hidden) e.preventDefault(); });
 
   /* ---------- buttons ---------- */
-  $('btnPrev').addEventListener('click', function () { loadWord(st.idx - 1); });
-  $('btnNext').addEventListener('click', function () { loadWord(st.idx + 1); });
+  $('btnPrev').addEventListener('click', function () { step(-1); });
+  $('btnNext').addEventListener('click', function () { step(1); });
   $('btnReset').addEventListener('click', reset);
   el.leave.addEventListener('click', toggleLonely);
-  $('btnWords').addEventListener('click', function () { var w = WORDS[st.idx]; showPicker(w ? w.group : null); });
-  $('btnSay').addEventListener('click', function () { st.say = !st.say; $('btnSay').setAttribute('aria-pressed', String(st.say)); renderSay(); });
+  el.hear.addEventListener('click', function () { speakShown(); flash(wrap); });
+  el.wordRow.addEventListener('click', function () { if (!st.locking) speakShown(); });   // tap the word to hear it
+  $('btnWords').addEventListener('click', function () { var w = WORDS[st.idx]; showPicker(st.pair >= 0 ? 'pairs' : w ? w.group : null); });
+  $('btnSay').addEventListener('click', function () {
+    st.say = !st.say; $('btnSay').setAttribute('aria-pressed', String(st.say)); renderSay();
+    if (st.say) speakShown();
+  });
+  function hearWithout() { var w = WORDS[st.idx]; if (!w) return; Speech.say(w.without); flash(el.pairCard); flash(el.whichA); }
+  function hearWith() { var w = WORDS[st.idx]; if (!w) return; Speech.say(w.word); flash(wrap); flash(el.whichB); }
+  el.pairCard.addEventListener('click', hearWithout);
+  el.pairCard.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); hearWithout(); } });
+  el.whichA.addEventListener('click', hearWithout);
+  el.whichB.addEventListener('click', hearWith);
   $('modeDrag').addEventListener('click', function () { setMode('drag'); });
   $('modeSlide').addEventListener('click', function () { setMode('slide'); });
   function renderSound() {
@@ -572,24 +734,28 @@
     b.setAttribute('aria-pressed', String(on)); b.setAttribute('aria-label', on ? 'Sound on' : 'Sound off');
     b.classList.toggle('muted', !on); app.dataset.sound = on ? 'on' : 'off';
   }
-  $('btnSound').addEventListener('click', function () { Sound.setOn(!Sound.isOn()); renderSound(); });   // not remembered: always starts ON
+  $('btnSound').addEventListener('click', function () { Sound.setOn(!Sound.isOn()); if (!Sound.isOn()) Speech.cancel(); renderSound(); });   // not remembered: always starts ON
 
   /* ---------- start ---------- */
   function start(data) {
     DATA = data; WORDS = DATA.words; FR = DATA.friend || { letters: 's', side: 'left', name: 'S', hold: 's' };
     DATA.groups.forEach(function (g) { GROUPS[g.id] = g; });
     LET = DATA.letters || {};
+    PAIRS = (DATA.pairs || []).map(function (id) { return findWord(id); }).filter(function (i) { return i >= 0 && WORDS[i].without; });
     document.title = (DATA.title || 'Blend Buddies') + ' – ' + (DATA.subtitle || '');
     buildPicker(); renderSound();
-    var relayout = function () { if (st.idx >= 0) layout(); };
+    var relayout = function () { if (st.idx >= 0) { layout(); if (st.pair >= 0) buildPairCard(WORDS[st.idx]); } };
     if (window.ResizeObserver) new ResizeObserver(relayout).observe(wrap); else window.addEventListener('resize', relayout);
     var q = new URLSearchParams(location.search);
     var m = norm(q.get('m') || q.get('mode'));
     setMode(m === 'slider' || m === 'slide' || m === 'b' ? 'slide' : 'drag');
     if (q.get('say') === '1') { st.say = true; $('btnSay').setAttribute('aria-pressed', 'true'); }
-    var w = q.get('w'), g = norm(q.get('g')).replace(/-/g, '');
-    if (w) { var i = findWord(w); if (i >= 0) loadWord(i); else showPicker(GROUPS[g] ? g : null, w); }
-    else showPicker(GROUPS[g] ? g : null);
+    var w = q.get('w'), mp = q.get('mp'), g = norm(q.get('g')).replace(/-/g, '');
+    if (!mp && w && /^pair-/i.test(norm(w))) mp = w;
+    var gOk = GROUPS[g] || g === 'pairs' ? g : null;
+    if (mp) { var k = findPair(mp); if (k >= 0) loadPair(k); else showPicker('pairs', mp); }
+    else if (w) { var i = findWord(w); if (i >= 0) loadWord(i); else showPicker(gOk, w); }
+    else showPicker(gOk);
     app.dataset.ready = '1';
   }
   var fontsReady = document.fonts && document.fonts.load

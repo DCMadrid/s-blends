@@ -34,7 +34,16 @@
   </header>
 
   <main id="play" class="play">
+    <div id="stageArea" class="stage-area">
+    <div id="pairCard" class="pair-card" role="button" tabindex="0" aria-label="Without S. Tap to hear it." hidden>
+      <span class="card-tag">Without S</span>
+      <svg id="pairSvg" class="pair-svg" viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
+    </div>
     <div id="stageWrap" class="stage-wrap">
+      <span id="stageTag" class="card-tag" hidden>With S</span>
+      <button id="btnHear" class="hear-btn" type="button" aria-label="Hear the word again" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg>
+      </button>
       <svg id="stage" class="stage" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="stageTitle">
         <title id="stageTitle">Blend buddies</title>
         <defs>
@@ -48,7 +57,7 @@
           <g id="armLayer"></g>
           <g id="ribbon" class="ribbon" clip-path="url(#ribbonClip)"></g>
           <g id="rightChain" class="chain right"></g>
-          <g id="mover" class="chain mover" tabindex="0" role="slider" aria-label="S. Drag along the arm." aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></g>
+          <g id="mover" class="chain mover" tabindex="0" role="slider" aria-label="S character. Drag along the arm to link arms." aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></g>
           <g id="tapRing" class="tap-ring" aria-hidden="true"><circle id="tapCircle" cx="0" cy="0" r="0"/></g>
         </g>
         <g id="wordRow" class="word-row" aria-hidden="true">
@@ -59,6 +68,13 @@
         </g>
       </svg>
     </div>
+    </div>
+    <div id="whichRow" class="which" hidden>
+      <span class="which-q">Which one?</span>
+      <button id="whichA" class="btn which-btn which-a" type="button"></button>
+      <button id="whichB" class="btn which-btn which-b" type="button"></button>
+    </div>
+    <div id="liveMsg" class="sr-only" aria-live="polite"></div>
     <div id="sayIt" class="say-it" aria-live="polite" hidden></div>
 
     <div id="sliderRow" class="slider-row" hidden>
@@ -83,7 +99,7 @@
   <section id="picker" class="picker" hidden>
     <div class="picker-head">
       <h1>Blend Buddies – S Blends</h1>
-      <p class="picker-sub">Pick a word. S is friendly and wants to join the other letters. The adult slides S along its friend’s arm while the child holds “sssss”, then they link arms and make the word.</p>
+      <p class="picker-sub">Pick a word. S is friendly and wants to join the other letters. The adult slides S along its friend’s arm while the child holds “sssss”, then they link arms, light up the blend and say the word. Minimal pairs (stop · top) are at the end.</p>
       <p id="notFound" class="not-found" hidden></p>
     </div>
     <div id="groups" class="groups"></div>

@@ -1,5 +1,5 @@
 {
- "about": "Blend Buddies word list - the single source of truth for the page. word = s + partner + rest. 'friend' sets which letter is the friendly mover and its side, so L-blends or R-blends can reuse the same code later. 'without' is the real word you get when the friendly letter is left out (empty = no Leave-S-out button). Link a word with ?w=<word>.",
+ "about": "Blend Buddies word list - the single source of truth for the page. word = s + partner + rest. 'friend' sets which letter is the friendly mover and its side, so L-blends or R-blends can reuse the same code later. 'without' is the real word you get when the friendly letter is left out (empty = no Leave-S-out button). Link a word with ?w=<word>. 'pairs' lists the word ids used in the Minimal pairs round (?mp=<id>).",
  "title": "Blend Buddies",
  "subtitle": "S Blends",
  "friend": {
@@ -131,6 +131,32 @@
    "color": "#A64B1A",
    "ink": "#FFFFFF"
   }
+ ],
+ "pairs": [
+  "stop",
+  "stick",
+  "stool",
+  "spot",
+  "spill",
+  "spin",
+  "spark",
+  "spy",
+  "scar",
+  "smile",
+  "small",
+  "snow",
+  "snail",
+  "snap",
+  "sneeze",
+  "swing",
+  "switch",
+  "slime",
+  "slow",
+  "slip",
+  "street",
+  "strap",
+  "scream",
+  "scrunch"
  ],
  "words": [
   {
@@ -432,6 +458,16 @@
    "blend": "sc",
    "group": "sk",
    "without": ""
+  },
+  {
+   "id": "scar",
+   "word": "scar",
+   "s": "s",
+   "partner": "c",
+   "rest": "ar",
+   "blend": "sc",
+   "group": "sk",
+   "without": "car"
   },
   {
    "id": "smile",
