@@ -853,7 +853,7 @@
   var fontsReady = document.fonts && document.fonts.load
     ? Promise.all([document.fonts.load('600 100px Fredoka'), document.fonts.load('700 30px Fredoka')]).catch(function () {})
     : Promise.resolve();
-  var wordsReady = fetch('words.json', { credentials: 'omit' }).then(function (r) { if (!r.ok) throw new Error('words.json ' + r.status); return r.json(); });
+  var wordsReady = fetch('words.json?v=4', { credentials: 'omit' }).then(function (r) { if (!r.ok) throw new Error('words.json ' + r.status); return r.json(); });
   Promise.all([wordsReady, fontsReady]).then(function (v) { start(v[0]); }, function () {
     app.textContent = '';
     var p = document.createElement('p'); p.className = 'load-error';
