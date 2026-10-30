@@ -184,6 +184,8 @@ button{font:inherit;color:inherit}
 .picker-head{text-align:center;margin:0 auto 10px;max-width:780px}
 .group-pairs{grid-column:1/-1}
 .pair-btn .vs{margin:0 8px;color:#9A9DB3}
+.group-pairs .word-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+.pair-btn{white-space:nowrap;font-size:22px}
 .picker h1{font-family:var(--head);font-weight:700;color:var(--purple);font-size:clamp(30px,5vw,48px);margin:6px 0 4px}
 .picker-sub{font-size:clamp(16px,2.2vw,21px);margin:0;color:#4A4D63}
 .not-found{font-family:var(--head);color:#B00020;font-size:20px;margin:10px 0 0}
