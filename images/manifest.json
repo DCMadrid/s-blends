@@ -1,0 +1,1857 @@
+{
+  "about": "Every picture is an openly licensed real photograph (public domain/CC0, CC BY or CC BY-SA), cropped to 600x600 and saved as WebP. Credits are also in PHOTO_CREDITS.md.",
+  "words": {
+    "stop": {
+      "word": "stop",
+      "file": "stop.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:STOP_sign.jpg",
+      "author": "Bidgee",
+      "license": "CC BY 3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0",
+      "title": "File:STOP sign.jpg",
+      "shows": "stop",
+      "bytes": 79020,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "stamp": {
+      "word": "stamp",
+      "file": "stamp.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:1923_Iraq_definitive_postage_stamp_-_2_annas_-_M._J._Maynard.jpg",
+      "author": "M.J. Maynard",
+      "license": "Public domain",
+      "license_url": "",
+      "title": "File:1923 Iraq definitive postage stamp - 2 annas - M. J. Maynard.jpg",
+      "shows": "stamp",
+      "bytes": 57310,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "stairs": {
+      "word": "stairs",
+      "file": "stairs.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Symmetric_view_of_the_staircase_at_The_Fullerton_Hotel_Singapore.jpg",
+      "author": "Basile Morin",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:Symmetric view of the staircase at The Fullerton Hotel Singapore.jpg",
+      "shows": "stairs",
+      "bytes": 52132,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "stove": {
+      "word": "stove",
+      "file": "stove.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Rinnai_RT-3GID_20090606.jpg",
+      "author": "Douglas P Perkins (Douglaspperkins (talk))",
+      "license": "CC BY 3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0",
+      "title": "File:Rinnai RT-3GID 20090606.jpg",
+      "shows": "stove",
+      "bytes": 44948,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "stack": {
+      "word": "stack",
+      "file": "stack.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Old_Books_01.JPG",
+      "author": "Ch. Maderthoner",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "title": "File:Old Books 01.JPG",
+      "shows": "stack of books",
+      "bytes": 47666,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "stem": {
+      "word": "stem",
+      "file": "stem.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Valeriana_officinalis_-_Niitv%C3%A4lja.jpg",
+      "author": "Ivar Leidus",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:Valeriana officinalis - Niitvälja.jpg",
+      "shows": "flower on a long stem",
+      "bytes": 21096,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "spider": {
+      "word": "spider",
+      "file": "spider.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Araneus_diadematus_(Clerck,_1757).JPG",
+      "author": "Michael Gäbler",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "title": "File:Araneus diadematus (Clerck, 1757).JPG",
+      "shows": "spider",
+      "bytes": 34944,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "spot": {
+      "word": "spot",
+      "file": "spot.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Adalia_bipunctata_130075203.jpg",
+      "author": "Victor Heng",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "title": "File:Adalia bipunctata 130075203.jpg",
+      "shows": "ladybug with spots",
+      "bytes": 9894,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "sponge": {
+      "word": "sponge",
+      "file": "sponge.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Pink_Sponge_isolated_on_White_Background.jpg",
+      "author": "Jonatan Svensson Glad",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:Pink Sponge isolated on White Background.jpg",
+      "shows": "sponge",
+      "bytes": 12144,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "space": {
+      "word": "space",
+      "file": "space.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Bruce_McCandless_II_during_EVA_in_1984.jpg",
+      "author": "NASA",
+      "license": "Public domain",
+      "license_url": "",
+      "title": "File:Bruce McCandless II during EVA in 1984.jpg",
+      "shows": "astronaut floating in space",
+      "bytes": 25824,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "spark": {
+      "word": "spark",
+      "file": "spark.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Schmiedefeuer_2.jpg",
+      "author": "Metoc",
+      "license": "CC BY-SA 2.5",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.5",
+      "title": "File:Schmiedefeuer 2.jpg",
+      "shows": "sparks flying from a fire",
+      "bytes": 135408,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "sky": {
+      "word": "sky",
+      "file": "sky.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Cirrus_uncinus_clouds_in_the_morning_sky.jpg",
+      "author": "ADARSHluck",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:Cirrus uncinus clouds in the morning sky.jpg",
+      "shows": "sky",
+      "bytes": 28946,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "ski": {
+      "word": "ski",
+      "file": "ski.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Skiing_32_(3324883708).jpg",
+      "author": "Weldon Kennedy from London, UK",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "title": "File:Skiing 32 (3324883708).jpg",
+      "shows": "person skiing",
+      "bytes": 14322,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "skate": {
+      "word": "skate",
+      "file": "skate.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Figure-skates-1.jpg",
+      "author": "en:User:Dr.frog",
+      "license": "Public domain",
+      "license_url": "",
+      "title": "File:Figure-skates-1.jpg",
+      "shows": "ice skate",
+      "bytes": 25802,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "skunk": {
+      "word": "skunk",
+      "file": "skunk.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Striped_Skunk.jpg",
+      "author": "http://www.birdphotos.com",
+      "license": "CC BY 3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0",
+      "title": "File:Striped Skunk.jpg",
+      "shows": "skunk",
+      "bytes": 94368,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "skateboard": {
+      "word": "skateboard",
+      "file": "skateboard.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Skateboard_upside.jpg",
+      "author": "Cynroya",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "title": "File:Skateboard upside.jpg",
+      "shows": "skateboard",
+      "bytes": 44418,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "skeleton": {
+      "word": "skeleton",
+      "file": "skeleton.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Human-Skeleton.jpg",
+      "author": "Sklmsta",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "title": "File:Human-Skeleton.jpg",
+      "shows": "skeleton",
+      "bytes": 16618,
+      "size": [
+        600,
+        600
+      ],
+      "crop": "whole photo shown (letterboxed on a blurred copy of itself)"
+    },
+    "scooter": {
+      "word": "scooter",
+      "file": "scooter.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:%D0%90%D0%BB%D0%BC%D0%B0%D1%82%D1%8B,_%D1%81%D0%B0%D0%BC%D0%BE%D0%BA%D0%B0%D1%82%D1%87%D0%B8%D1%86%D0%B0_%D0%BD%D0%B0_%D0%A2%D0%BE%D0%BB%D0%B5_%D0%B1%D0%B8-%D0%A0%D0%BE%D0%B7%D1%8B%D0%B1%D0%B0%D0%BA%D0%B8%D0%B5%D0%B2%D0%B0.jpg",
+      "author": "Nikolai Bulykin",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:Алматы, самокатчица на Толе би-Розыбакиева.jpg",
+      "shows": "woman riding a kick scooter",
+      "bytes": 43824,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "scarf": {
+      "word": "scarf",
+      "file": "scarf.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:100%25_Kaschmir_Wolle_vonk_kaschmirprodukte.de.jpg",
+      "author": "https://www.kaschmirprodukte.de",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:100% Kaschmir Wolle vonk kaschmirprodukte.de.jpg",
+      "shows": "scarf",
+      "bytes": 13132,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "smile": {
+      "word": "smile",
+      "file": "smile.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Smiling_face_of_a_Bangladeshi_child.jpg",
+      "author": "Masum-al-hasan",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:Smiling face of a Bangladeshi child.jpg",
+      "shows": "smiling girl",
+      "bytes": 34006,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "smell": {
+      "word": "smell",
+      "file": "smell.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Smelling_the_flowers_at_the_Scandinavian_Festival.jpg",
+      "author": "Rick Obst",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "title": "File:Smelling the flowers at the Scandinavian Festival.jpg",
+      "shows": "child smelling flowers",
+      "bytes": 52526,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "smoke": {
+      "word": "smoke",
+      "file": "smoke.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Chimney_spewing_smoke,_rose-colored.jpg",
+      "author": "Martin Abegglen",
+      "license": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+      "title": "File:Chimney spewing smoke, rose-colored.jpg",
+      "shows": "smoke from a smokestack",
+      "bytes": 5774,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "smooth": {
+      "word": "smooth",
+      "file": "smooth.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Pebbles_Beach_Sur.jpg",
+      "author": "Adhilaslam",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:Pebbles Beach Sur.jpg",
+      "shows": "stack of smooth stones",
+      "bytes": 48974,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "smoothie": {
+      "word": "smoothie",
+      "file": "smoothie.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Kiwi_Smoothie.jpg",
+      "author": "rawpixel.com",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "title": "File:Kiwi Smoothie.jpg",
+      "shows": "smoothie",
+      "bytes": 29748,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "snow": {
+      "word": "snow",
+      "file": "snow.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Snow_falling_from_the_trees_in_the_grove_in_Efremov.jpg",
+      "author": "Юрий Д.К.",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "title": "File:Snow falling from the trees in the grove in Efremov.jpg",
+      "shows": "snowy trees",
+      "bytes": 153138,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "snake": {
+      "word": "snake",
+      "file": "snake.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:The_Grass_Snake_-_Natrix_natrix.jpg",
+      "author": "Darius Bauzys",
+      "license": "CC BY 3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0",
+      "title": "File:The Grass Snake - Natrix natrix.jpg",
+      "shows": "snake",
+      "bytes": 51426,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "snack": {
+      "word": "snack",
+      "file": "snack.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Potato_Crackers_2.jpg",
+      "author": "Gaurav Dhwaj Khadka",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:Potato Crackers 2.jpg",
+      "shows": "crackers",
+      "bytes": 26094,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "snail": {
+      "word": "snail",
+      "file": "snail.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Common_snail.jpg",
+      "author": "macrophile on Flickr",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "title": "File:Common snail.jpg",
+      "shows": "snail",
+      "bytes": 38428,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "sneeze": {
+      "word": "sneeze",
+      "file": "sneeze.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Woman_sneezing_minot.jpg",
+      "author": "Senior Airman Benjamin Stratton",
+      "license": "Public domain",
+      "license_url": "",
+      "title": "File:Woman sneezing minot.jpg",
+      "shows": "woman sneezing into a tissue",
+      "bytes": 15252,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "sniff": {
+      "word": "sniff",
+      "file": "sniff.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:A_Golden_Retriever_sniffing_a_Beagle_at_the_Dog_Park.jpg",
+      "author": "Slyronit",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:A Golden Retriever sniffing a Beagle at the Dog Park.jpg",
+      "shows": "dogs sniffing each other",
+      "bytes": 73032,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "snowman": {
+      "word": "snowman",
+      "file": "snowman.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Bonhomme_de_neige_2.jpg",
+      "author": "Sphiiix",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:Bonhomme de neige 2.jpg",
+      "shows": "snowman",
+      "bytes": 11030,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "sneaker": {
+      "word": "sneaker",
+      "file": "sneaker.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:A_Vans_Sneaker_On_The_Side.jpg",
+      "author": "Joeltorresmejia78",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:A Vans Sneaker On The Side.jpg",
+      "shows": "sneaker",
+      "bytes": 18460,
+      "size": [
+        600,
+        600
+      ],
+      "crop": "whole photo shown (letterboxed on a blurred copy of itself)"
+    },
+    "swing": {
+      "word": "swing",
+      "file": "swing.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:004_2021_09_23_Einsamkeit.jpg",
+      "author": "Friedrich Haag",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:004 2021 09 23 Einsamkeit.jpg",
+      "shows": "swing set",
+      "bytes": 151212,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "swim": {
+      "word": "swim",
+      "file": "swim.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Child_swims_in_a_swimming_pool_on_a_sunny_day_with_water_splashing_around.jpg",
+      "author": "Shixart1985",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "title": "File:Child swims in a swimming pool on a sunny day with water splashing around.jpg",
+      "shows": "child swimming",
+      "bytes": 60720,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "swan": {
+      "word": "swan",
+      "file": "swan.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Cygne_tubercul%C3%A9_juv%C3%A9nile_(Cygnus_olor)_-_t%C3%AAte_(1).jpg",
+      "author": "Gzen92",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:Cygne tuberculé juvénile (Cygnus olor) - tête (1).jpg",
+      "shows": "swan",
+      "bytes": 42962,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "switch": {
+      "word": "switch",
+      "file": "switch.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Rocker_light_switch.jpg",
+      "author": "DemonDays64",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:Rocker light switch.jpg",
+      "shows": "light switch",
+      "bytes": 9630,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "swirl": {
+      "word": "swirl",
+      "file": "swirl.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Lollipop-Rainbox-Swirl.jpg",
+      "author": "Evan-Amos",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "title": "File:Lollipop-Rainbox-Swirl.jpg",
+      "shows": "rainbow swirl lollipop",
+      "bytes": 26976,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "swamp": {
+      "word": "swamp",
+      "file": "swamp.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:A_swamp_in_Poland.jpg",
+      "author": "Iwona Castiello d'Antonio",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:A swamp in Poland.jpg",
+      "shows": "swamp",
+      "bytes": 87820,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "sweet": {
+      "word": "sweet",
+      "file": "sweet.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Pastel_Peppermint_Candy_Buttons_by_Andie%27s_Specialty_Sweets_IMG_3169.JPG",
+      "author": "Sweetisfaction",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "title": "File:Pastel Peppermint Candy Buttons by Andie's Specialty Sweets IMG 3169.JPG",
+      "shows": "candies (sweets)",
+      "bytes": 22650,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "swimsuit": {
+      "word": "swimsuit",
+      "file": "swimsuit.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Chloe_Sutton_-_USA_Swimsuit_(4661622460)_(alternate_version).jpg",
+      "author": "Don Le",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "title": "File:Chloe Sutton - USA Swimsuit (4661622460) (alternate version).jpg",
+      "shows": "swimsuit",
+      "bytes": 29652,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "slide": {
+      "word": "slide",
+      "file": "slide.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Playground_Slide_Metal.jpg",
+      "author": "Stilfehler",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "title": "File:Playground Slide Metal.jpg",
+      "shows": "playground slide",
+      "bytes": 83544,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "sled": {
+      "word": "sled",
+      "file": "sled.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Sleigh_-_Meshkov_house.jpg",
+      "author": "Лапоть",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "title": "File:Sleigh - Meshkov house.jpg",
+      "shows": "sled",
+      "bytes": 51384,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "smart": {
+      "word": "smart",
+      "file": "smart.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Girl_reading_a_book_(15072194361).jpg",
+      "author": "Personal Creations",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "title": "File:Girl reading a book (15072194361).jpg",
+      "shows": "girl reading a book",
+      "bytes": 25236,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "sleep": {
+      "word": "sleep",
+      "file": "sleep.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Young_blonde_white_girl_sleeping_on_the_side.jpg",
+      "author": "Alexandre Bernier Marceau",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:Young blonde white girl sleeping on the side.jpg",
+      "shows": "girl sleeping in bed",
+      "bytes": 13636,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "slow": {
+      "word": "slow",
+      "file": "slow.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Desert_tortoise_walking_in_the_Pinto_Basin_(29803471006).jpg",
+      "author": "Joshua Tree National Park",
+      "license": "Public domain",
+      "license_url": "",
+      "title": "File:Desert tortoise walking in the Pinto Basin (29803471006).jpg",
+      "shows": "tortoise (slow animal)",
+      "bytes": 68676,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "slipper": {
+      "word": "slipper",
+      "file": "slipper.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:2023_Kapcie.jpg",
+      "author": "Jacek Halicki",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:2023 Kapcie.jpg",
+      "shows": "slipper",
+      "bytes": 36366,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "sloth": {
+      "word": "sloth",
+      "file": "sloth.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Bradypus.jpg",
+      "author": "Stefan Laube (Tauchgurke)",
+      "license": "Public domain",
+      "license_url": "",
+      "title": "File:Bradypus.jpg",
+      "shows": "sloth",
+      "bytes": 119054,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "slug": {
+      "word": "slug",
+      "file": "slug.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Black_Slug.jpg",
+      "author": "Prashanthns",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "title": "File:Black Slug.jpg",
+      "shows": "slug",
+      "bytes": 61720,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "slice": {
+      "word": "slice",
+      "file": "slice.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Pepperoni_pizza_slice_on_a_red_plate.jpg",
+      "author": "MVS9966",
+      "license": "CC BY 3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0",
+      "title": "File:Pepperoni pizza slice on a red plate.jpg",
+      "shows": "slice of pizza",
+      "bytes": 30046,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "slip": {
+      "word": "slip",
+      "file": "slip.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Wet_floor_caution_sugn.jpg",
+      "author": "Kurt Kaiser",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "title": "File:Wet floor caution sugn.jpg",
+      "shows": "wet-floor caution sign (slip warning)",
+      "bytes": 44940,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "straw": {
+      "word": "straw",
+      "file": "straw.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Eight_drinking_straws_(4273846588).jpg",
+      "author": "Horia Varlan from Bucharest, Romania",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "title": "File:Eight drinking straws (4273846588).jpg",
+      "shows": "straw",
+      "bytes": 23720,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "street": {
+      "word": "street",
+      "file": "street.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Gyedong-gil_street_with_climbing_plants_at_golden_hour_in_Seoul_South_Korea.jpg",
+      "author": "Basile Morin",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:Gyedong-gil street with climbing plants at golden hour in Seoul South Korea.jpg",
+      "shows": "street",
+      "bytes": 86942,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "strawberry": {
+      "word": "strawberry",
+      "file": "strawberry.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Garden_strawberry_(Fragaria_%C3%97_ananassa)_single2.jpg",
+      "author": "Ivar Leidus",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:Garden strawberry (Fragaria × ananassa) single2.jpg",
+      "shows": "strawberry",
+      "bytes": 35696,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "stretch": {
+      "word": "stretch",
+      "file": "stretch.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Back_view_of_a_woman_performing_a_stretching_exercise_for_the_spine.jpg",
+      "author": "Shixart1985",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "title": "File:Back view of a woman performing a stretching exercise for the spine.jpg",
+      "shows": "woman stretching",
+      "bytes": 14624,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "stream": {
+      "word": "stream",
+      "file": "stream.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Martin_Creek_is_a_stream_in_North_Carolina_that_runs_into_the_Hiwassee_River_01.jpg",
+      "author": "Harrison Keely",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "title": "File:Martin Creek is a stream in North Carolina that runs into the Hiwassee River 01.jpg",
+      "shows": "stream",
+      "bytes": 140094,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "splash": {
+      "word": "splash",
+      "file": "splash.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Splash_2_color.jpg",
+      "author": "Pro2",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "title": "File:Splash 2 color.jpg",
+      "shows": "water splash",
+      "bytes": 29188,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "splatter": {
+      "word": "splatter",
+      "file": "splatter.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Splatter_paint_on_white_table_(Unsplash).jpg",
+      "author": "Ricardo Viana ricardoviana",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "title": "File:Splatter paint on white table (Unsplash).jpg",
+      "shows": "paint splatter",
+      "bytes": 91338,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "splinter": {
+      "word": "splinter",
+      "file": "splinter.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Splinter.jpg",
+      "author": "Sanba38",
+      "license": "CC BY-SA 3.0",
+      "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
+      "title": "File:Splinter.jpg",
+      "shows": "splinter in a fingertip",
+      "bytes": 12282,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "splendid": {
+      "word": "splendid",
+      "file": "splendid.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Bratislava_New_Year_Fireworks.jpg",
+      "author": "Ondrejk",
+      "license": "Public domain",
+      "license_url": "",
+      "title": "File:Bratislava New Year Fireworks.jpg",
+      "shows": "fireworks",
+      "bytes": 73076,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "splint": {
+      "word": "splint",
+      "file": "splint.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Finger_Injury.jpg",
+      "author": "Hacoley",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:Finger Injury.jpg",
+      "shows": "finger splint",
+      "bytes": 13412,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "screen": {
+      "word": "screen",
+      "file": "screen.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Computer_monitor_screen_image_simulated.jpg",
+      "author": "Andrew pmk (Wikimedia Commons uploader; no separate author named)",
+      "license": "CC BY-SA 3.0",
+      "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
+      "title": "File:Computer monitor screen image simulated.jpg",
+      "shows": "computer screen",
+      "bytes": 53366,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "screw": {
+      "word": "screw",
+      "file": "screw.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Black_wood_screw_with_flat_Phillips_head.jpg",
+      "author": "Mynameisnatmo",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:Black wood screw with flat Phillips head.jpg",
+      "shows": "screw",
+      "bytes": 9124,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "scrunch": {
+      "word": "scrunch",
+      "file": "scrunch.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Person_crumpling_a_piece_of_paper_while_sitting_at_a_wooden_table_in_a_cozy_interior_space.jpg",
+      "author": "Shixart1985",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "title": "File:Person crumpling a piece of paper while sitting at a wooden table in a cozy interior space.jpg",
+      "shows": "hands scrunching paper",
+      "bytes": 15322,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "scramble": {
+      "word": "scramble",
+      "file": "scramble.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Scrambled_eggs_with_basil.jpg",
+      "author": "OmegaFallon",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "title": "File:Scrambled eggs with basil.jpg",
+      "shows": "scrambled eggs",
+      "bytes": 24934,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "top": {
+      "word": "top",
+      "file": "top.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Spinning_top_shadow.jpg",
+      "author": "Armenak Margarian",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:Spinning top shadow.jpg",
+      "shows": "spinning top toy",
+      "bytes": 41244,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "tick": {
+      "word": "tick",
+      "file": "tick.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Deer_tick_insect_ixodes_scapularis.jpg",
+      "author": "Scott Bauer, U.S. Department of Agriculture",
+      "license": "Public domain",
+      "license_url": "",
+      "title": "File:Deer tick insect ixodes scapularis.jpg",
+      "shows": "tick",
+      "bytes": 57864,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "pot": {
+      "word": "pot",
+      "file": "pot.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Pot_(IMG_0261).jpg",
+      "author": "Matti Blume",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en",
+      "title": "File:Pot (IMG 0261).jpg",
+      "shows": "pot",
+      "bytes": 25272,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "pill": {
+      "word": "pill",
+      "file": "pill.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Generic_amoxicillin-clavulanic_acid_tablets_with_875mg_amoxicillin.jpg",
+      "author": "Sage Ross",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "title": "File:Generic amoxicillin-clavulanic acid tablets with 875mg amoxicillin.jpg",
+      "shows": "pill",
+      "bytes": 15572,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "park": {
+      "word": "park",
+      "file": "park.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Brussels_Cinquantenaire_R04.jpg",
+      "author": "Marc Ryckaert",
+      "license": "CC BY 3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0",
+      "title": "File:Brussels Cinquantenaire R04.jpg",
+      "shows": "park",
+      "bytes": 55230,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "pie": {
+      "word": "pie",
+      "file": "pie.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Buko_pie_(Coconut_custard_pie)_-_Philippines_01.jpg",
+      "author": "Obsidian Soul",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "title": "File:Buko pie (Coconut custard pie) - Philippines 01.jpg",
+      "shows": "pie",
+      "bytes": 59790,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "car": {
+      "word": "car",
+      "file": "car.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:AvMalecon-LaHabanaCuba-04735.jpg",
+      "author": "Ezarate",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:AvMalecon-LaHabanaCuba-04735.jpg",
+      "shows": "car",
+      "bytes": 33576,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "mile": {
+      "word": "mile",
+      "file": "mile.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Mile_Marker_0_and_Zero_Tenths_-_US1_Pennsylvania_(43770400760).jpg",
+      "author": "formulanone from Huntsville, United States",
+      "license": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+      "title": "File:Mile Marker 0 and Zero Tenths - US1 Pennsylvania (43770400760).jpg",
+      "shows": "mile marker sign",
+      "bytes": 12972,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "mall": {
+      "word": "mall",
+      "file": "mall.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Large_interior_view_of_Plaza_Singapura_Shopping_mall_Orchard_Road_Singapore.jpg",
+      "author": "Basile Morin",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:Large interior view of Plaza Singapura Shopping mall Orchard Road Singapore.jpg",
+      "shows": "shopping mall interior",
+      "bytes": 76252,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "no": {
+      "word": "no",
+      "file": "no.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:S%C3%B3ller_train_station_09.jpg",
+      "author": "Kritzolina",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:Sóller train station 09.jpg",
+      "shows": "'no' symbol painted on pavement",
+      "bytes": 105512,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "nail": {
+      "word": "nail",
+      "file": "nail.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Hammer_and_nails.jpg",
+      "author": "Santeri Viinamäki",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:Hammer and nails.jpg",
+      "shows": "nails with a hammer",
+      "bytes": 41800,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "witch": {
+      "word": "witch",
+      "file": "witch.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Halloween_witch_smiling.jpg",
+      "author": "Petr Kratochvil",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "title": "File:Halloween witch smiling.jpg",
+      "shows": "woman in a witch costume",
+      "bytes": 29846,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "lime": {
+      "word": "lime",
+      "file": "lime.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Lime-Whole-Split.jpg",
+      "author": "Evan-Amos",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "title": "File:Lime-Whole-Split.jpg",
+      "shows": "lime",
+      "bytes": 17592,
+      "size": [
+        600,
+        600
+      ],
+      "crop": "whole photo shown (letterboxed on a blurred copy of itself)"
+    },
+    "treat": {
+      "word": "treat",
+      "file": "treat.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Cran-Raspberry_Cupcake_(4357512712).jpg",
+      "author": "Clever Cupcakes from Montreal, Canada",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "title": "File:Cran-Raspberry Cupcake (4357512712).jpg",
+      "shows": "cupcake",
+      "bytes": 16994,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "trap": {
+      "word": "trap",
+      "file": "trap.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Victor-Mousetrap.jpg",
+      "author": "Evan-Amos",
+      "license": "Public domain",
+      "license_url": "",
+      "title": "File:Victor-Mousetrap.jpg",
+      "shows": "mousetrap",
+      "bytes": 22012,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "cream": {
+      "word": "cream",
+      "file": "cream.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Vegan_whipped_cream.jpg",
+      "author": "Mx. Granger",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "title": "File:Vegan whipped cream.jpg",
+      "shows": "whipped cream",
+      "bytes": 16716,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "slime": {
+      "word": "slime",
+      "file": "slime.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Slime_02471_Nevit.jpg",
+      "author": "Nevit",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "title": "File:Slime 02471 Nevit.jpg",
+      "shows": "slime",
+      "bytes": 22096,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "spill": {
+      "word": "spill",
+      "file": "spill.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Badam_milk_spilled.jpg",
+      "author": "DEEPAN RAJA .M",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:Badam milk spilled.jpg",
+      "shows": "spilled drink",
+      "bytes": 28884,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "spy": {
+      "word": "spy",
+      "file": "spy.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:US_Navy_050507-N-8158F-045_Aviation_Ordnanceman_Airman_Terrell_Alexander,_a_native_of_Auburndale,_Fla.,_mans_the_starboard_look_out_watch_on_the_flight_deck.jpg",
+      "author": "U.S. Navy photo by Photographer’ Mate Airman Roland Franklin",
+      "license": "Public domain",
+      "license_url": "",
+      "title": "File:US Navy 050507-N-8158F-045 Aviation Ordnanceman Airman Terrell Alexander, a native of Auburndale, Fla., mans the starboard look out watch on the flight deck.jpg",
+      "shows": "man looking through binoculars",
+      "bytes": 28996,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "spaghetti": {
+      "word": "spaghetti",
+      "file": "spaghetti.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Plat_de_Spaghetti_blanc.jpg",
+      "author": "Chado07",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "title": "File:Plat de Spaghetti blanc.jpg",
+      "shows": "spaghetti",
+      "bytes": 35064,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "stick": {
+      "word": "stick",
+      "file": "stick.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:%D0%9F%D0%BB%D0%BE%D1%82%D0%BD%D1%8B%D0%B9_%D0%B7%D0%B0%D1%85%D0%B2%D0%B0%D1%82_%D0%BF%D0%B0%D0%BB%D0%BA%D0%B8_%D0%B7%D0%B0_%D1%81%D1%87%D0%B5%D1%82_%D0%B7%D0%B0%D0%BC%D1%8B%D0%BA%D0%B0%D0%BD%D0%B8%D1%8F_%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%BC_%D0%BF%D0%B0%D0%BB%D1%8C%D1%86%D0%B5%D0%BC.JPG",
+      "author": "Weldis",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "title": "File:Плотный захват палки за счет замыкания большим пальцем.JPG",
+      "shows": "stick",
+      "bytes": 33004,
+      "size": [
+        600,
+        600
+      ],
+      "crop": "whole photo shown (letterboxed on a blurred copy of itself)"
+    },
+    "stool": {
+      "word": "stool",
+      "file": "stool.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:A_brown_stool.jpg",
+      "author": "Captain MarcusL",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:A brown stool.jpg",
+      "shows": "stool",
+      "bytes": 34278,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "spin": {
+      "word": "spin",
+      "file": "spin.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:%27Alikoto%27.jpg",
+      "author": "$ir$terlin",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:'Alikoto'.jpg",
+      "shows": "hand spinning a top",
+      "bytes": 20390,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "small": {
+      "word": "small",
+      "file": "small.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:A_small_kitten_on_a_small_broken_brink_of_a_tree_lying_on_the_ground_and_kitten_is_looking_into_the_camera.jpg",
+      "author": "TheRanchKeeper",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:A small kitten on a small broken brink of a tree lying on the ground and kitten is looking into the camera.jpg",
+      "shows": "small kitten",
+      "bytes": 29816,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "smash": {
+      "word": "smash",
+      "file": "smash.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:A_cracked_plate_after_inadvertently_putting_small_pieces_of_metal_into_the_microwave.jpg",
+      "author": "MichalPL",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:A cracked plate after inadvertently putting small pieces of metal into the microwave.jpg",
+      "shows": "smashed plate",
+      "bytes": 19684,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "star": {
+      "word": "star",
+      "file": "star.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Star_Christmas_ornament.jpg",
+      "author": "Olugold",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:Star Christmas ornament.jpg",
+      "shows": "red paper star decorations",
+      "bytes": 13042,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "spoon": {
+      "word": "spoon",
+      "file": "spoon.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:1080_Cuchara_sopera,_Estocolmo_Suecia.jpg",
+      "author": "Museo Soumaya",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:1080 Cuchara sopera, Estocolmo Suecia.jpg",
+      "shows": "spoon",
+      "bytes": 6960,
+      "size": [
+        600,
+        600
+      ],
+      "crop": "whole photo shown (letterboxed on a blurred copy of itself)"
+    },
+    "crunch": {
+      "word": "crunch",
+      "file": "crunch.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:A_Japanese_Apple.jpg",
+      "author": "Brent Holgate",
+      "license": "Public domain",
+      "license_url": "",
+      "title": "File:A Japanese Apple.jpg",
+      "shows": "man biting into an apple",
+      "bytes": 46092,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "scar": {
+      "word": "scar",
+      "file": "scar.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Total_knee_replacment_scar_2008.jpg",
+      "author": "Dave Haygarth",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "title": "File:Total knee replacment scar 2008.jpg",
+      "shows": "scar on a knee",
+      "bytes": 27880,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "smock": {
+      "word": "smock",
+      "file": "smock.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:12_Kittelsch%C3%BCrze.jpg",
+      "author": "12Werker",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:12 Kittelschürze.jpg",
+      "shows": "smock (apron-style cover-up)",
+      "bytes": 68318,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "snore": {
+      "word": "snore",
+      "file": "snore.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:02016_Schlafen_in_der_Sonne_2016-08-29.jpg",
+      "author": "Silar",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:02016 Schlafen in der Sonne 2016-08-29.jpg",
+      "shows": "man asleep on a bench",
+      "bytes": 46920,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "sweep": {
+      "word": "sweep",
+      "file": "sweep.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:African_woman_sweeping_Her_Home.jpg",
+      "author": "Nosakhare Okuons",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:African woman sweeping Her Home.jpg",
+      "shows": "woman sweeping with a broom",
+      "bytes": 119784,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "string": {
+      "word": "string",
+      "file": "string.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Bindfaden.jpg",
+      "author": "Daniel Schwen",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:Bindfaden.jpg",
+      "shows": "balls of string/twine",
+      "bytes": 102606,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "strong": {
+      "word": "strong",
+      "file": "strong.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:250211-D-PM193-1330_(54321852239).jpg",
+      "author": "U.S. Secretary of Defense",
+      "license": "Public domain",
+      "license_url": "",
+      "title": "File:250211-D-PM193-1330 (54321852239).jpg",
+      "shows": "man lifting a barbell",
+      "bytes": 27602,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "strap": {
+      "word": "strap",
+      "file": "strap.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Basket_strap_file_1_96.jpg",
+      "author": "Autohauler",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "title": "File:Basket strap file 1 96.jpg",
+      "shows": "strap",
+      "bytes": 18894,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "scratch": {
+      "word": "scratch",
+      "file": "scratch.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:5448Baliuag_Bulacan_Landmarks_during_the_2020_coronavirus_pandemic_39.jpg",
+      "author": "Judgefloro",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "title": "File:5448Baliuag Bulacan Landmarks during the 2020 coronavirus pandemic 39.jpg",
+      "shows": "cat scratching",
+      "bytes": 50176,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "scribble": {
+      "word": "scribble",
+      "file": "scribble.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Child_scribble_age_1y10m.jpg",
+      "author": "Zeimusu (Wikimedia Commons uploader; no separate author named)",
+      "license": "CC BY-SA 3.0",
+      "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
+      "title": "File:Child scribble age 1y10m.jpg",
+      "shows": "crayon scribbles",
+      "bytes": 74782,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "pin": {
+      "word": "pin",
+      "file": "pin.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:2023_Agrafki.jpg",
+      "author": "Jacek Halicki",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:2023 Agrafki.jpg",
+      "shows": "safety pins",
+      "bytes": 23526,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "nap": {
+      "word": "nap",
+      "file": "nap.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:A_child_sleeping.jpg",
+      "author": "Alessandro Zangrilli",
+      "license": "Public domain",
+      "license_url": "",
+      "title": "File:A child sleeping.jpg",
+      "shows": "child napping",
+      "bytes": 17744,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "wing": {
+      "word": "wing",
+      "file": "wing.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Bengalese_Eagle_Owl_3a_(2692204855).jpg",
+      "author": "Tony Hisgett from Birmingham, UK",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "title": "File:Bengalese Eagle Owl 3a (2692204855).jpg",
+      "shows": "owl with wings spread",
+      "bytes": 58220,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "low": {
+      "word": "low",
+      "file": "low.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Fairfax_County_School_sports_-_31.JPG",
+      "author": "Jarek Tuszyński",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "title": "File:Fairfax County School sports - 31.JPG",
+      "shows": "child bending low under a limbo pole",
+      "bytes": 85282,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "lip": {
+      "word": "lip",
+      "file": "lip.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:A_week%27s_stubble.jpg",
+      "author": "さえぼー",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "title": "File:A week's stubble.jpg",
+      "shows": "close-up of lips",
+      "bytes": 39604,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "step": {
+      "word": "step",
+      "file": "step.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:2012-07-07_Jurong_East_34.JPG",
+      "author": "Gareth Wyn Jones",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:2012-07-07 Jurong East 34.JPG",
+      "shows": "stepping stones",
+      "bytes": 73082,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "stripe": {
+      "word": "stripe",
+      "file": "stripe.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:02123jfClothes_shirts_pants_in_Philippinesfvf_03.jpg",
+      "author": "Judgefloro",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "title": "File:02123jfClothes shirts pants in Philippinesfvf 03.jpg",
+      "shows": "striped shirts",
+      "bytes": 50616,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "splotch": {
+      "word": "splotch",
+      "file": "splotch.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Splotches_of_blue_paint_-_geograph.org.uk_-_950953.jpg",
+      "author": "Evelyn Simak",
+      "license": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+      "title": "File:Splotches of blue paint - geograph.org.uk - 950953.jpg",
+      "shows": "blue paint splotch on a path",
+      "bytes": 72152,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "scrape": {
+      "word": "scrape",
+      "file": "scrape.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Abrasion_on_hand_20050906.jpg",
+      "author": "Berteun",
+      "license": "Public domain",
+      "license_url": "",
+      "title": "File:Abrasion on hand 20050906.jpg",
+      "shows": "scraped skin",
+      "bytes": 27216,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "tool": {
+      "word": "tool",
+      "file": "tool.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:20060513_toolbox.jpg",
+      "author": "Per Erik Strandberg sv:User:PER9000",
+      "license": "CC BY-SA 2.5",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.5",
+      "title": "File:20060513 toolbox.jpg",
+      "shows": "case of hand tools",
+      "bytes": 65586,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "knees": {
+      "word": "knees",
+      "file": "knees.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:A_9_-_month_-_old_baby_crawls.jpg",
+      "author": "תהלה הרץ",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:A 9 - month - old baby crawls.jpg",
+      "shows": "baby crawling on hands and knees",
+      "bytes": 132030,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "stroller": {
+      "word": "stroller",
+      "file": "stroller.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Baby_carriers_in_Guangzhou_Metro_Line_3.jpg",
+      "author": "David290 (Wikimedia Commons uploader; no separate author named)",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:Baby carriers in Guangzhou Metro Line 3.jpg",
+      "shows": "children in strollers",
+      "bytes": 39880,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "split": {
+      "word": "split",
+      "file": "split.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Banana_split_1.jpg",
+      "author": "Edward Allen Lim",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "title": "File:Banana split 1.jpg",
+      "shows": "banana split",
+      "bytes": 36968,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "scream": {
+      "word": "scream",
+      "file": "scream.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:140708-M-FS592-380_(14672128843).jpg",
+      "author": "U.S. Department of Defense Current Photos",
+      "license": "Public domain",
+      "license_url": "",
+      "title": "File:140708-M-FS592-380 (14672128843).jpg",
+      "shows": "man yelling",
+      "bytes": 13192,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "smudge": {
+      "word": "smudge",
+      "file": "smudge.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Village_Boy,_Madagascar_(22708916781).jpg",
+      "author": "Rod Waddington",
+      "license": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+      "title": "File:Village Boy, Madagascar (22708916781).jpg",
+      "shows": "boy with dirt smudges on his face",
+      "bytes": 35816,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "scrub": {
+      "word": "scrub",
+      "file": "scrub.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Tawashi_Japanese_scourer.jpg",
+      "author": "Qurren",
+      "license": "CC BY-SA 3.0",
+      "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
+      "title": "File:Tawashi Japanese scourer.jpg",
+      "shows": "scrub brush",
+      "bytes": 67582,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "snap": {
+      "word": "snap",
+      "file": "snap.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:TalcumSnapping.jpg",
+      "author": "Alicja Colón",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "title": "File:TalcumSnapping.jpg",
+      "shows": "hand snapping fingers (in a puff of powder)",
+      "bytes": 38492,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "splat": {
+      "word": "splat",
+      "file": "splat.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:04_Mouvement_-_Movement.jpg",
+      "author": "Moonlander1954",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:04 Mouvement - Movement.jpg",
+      "shows": "water drop splatting into water",
+      "bytes": 21126,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "scroll": {
+      "word": "scroll",
+      "file": "scroll.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Biblia_Formalium.jpg",
+      "author": "Me And You 24",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:Biblia Formalium.jpg",
+      "shows": "handmade paper scroll",
+      "bytes": 15196,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "skip": {
+      "word": "skip",
+      "file": "skip.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Young_girl_skipping_a_rope_44.jpg",
+      "author": "Denis kasozi",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:Young girl skipping a rope 44.jpg",
+      "shows": "girl jumping (skipping) rope",
+      "bytes": 41670,
+      "size": [
+        600,
+        600
+      ]
+    },
+    "skirt": {
+      "word": "skirt",
+      "file": "skirt.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Green_Poplin_Skirt_by_Sybil_Connolly-_full_length_front.jpg",
+      "author": "Hunt Museum and Inés Rivilla López",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "title": "File:Green Poplin Skirt by Sybil Connolly- full length front.jpg",
+      "shows": "skirt",
+      "bytes": 8640,
+      "size": [
+        600,
+        600
+      ],
+      "crop": "whole photo shown (letterboxed on a blurred copy of itself)"
+    },
+    "sweater": {
+      "word": "sweater",
+      "file": "sweater.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Jersei-coll-alt.jpg",
+      "author": "Joan Rocaguinard",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "title": "File:Jersei-coll-alt.jpg",
+      "shows": "sweater",
+      "bytes": 49252,
+      "size": [
+        600,
+        600
+      ],
+      "crop": "whole photo shown (letterboxed on a blurred copy of itself)"
+    }
+  }
+}
