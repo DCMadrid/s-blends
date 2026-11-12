@@ -1,5 +1,5 @@
 {
-  "about": "Every picture is an openly licensed real photograph (public domain/CC0, CC BY or CC BY-SA), cropped to 600x600 and saved as WebP. Credits are also in PHOTO_CREDITS.md.",
+  "about": "Every picture is a real photograph cropped to 600x600 WebP, openly licensed (public domain/CC0, CC BY or CC BY-SA), except 5 words (snap, splat, smudge, spin, scream) whose pictures are AI-generated images created for this activity. Credits are also in PHOTO_CREDITS.md.",
   "words": {
     "stop": {
       "word": "stop",
@@ -1298,13 +1298,15 @@
     "spin": {
       "word": "spin",
       "file": "spin.webp",
-      "source_url": "https://commons.wikimedia.org/wiki/File:%27Alikoto%27.jpg",
-      "author": "$ir$terlin",
-      "license": "CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-      "title": "File:'Alikoto'.jpg",
-      "shows": "hand spinning a top",
-      "bytes": 20390,
+      "source": "AI-generated image created for this activity (Blend Buddies – S Blends, Nov 2026); not a Wikimedia Commons photo",
+      "author": "AI-generated for this activity",
+      "license": "Created for this activity; no third-party license",
+      "license_url": "",
+      "source_url": "",
+      "title": "spin (generated)",
+      "shows": "a rainbow-striped spinning top whirling on a table, colors blurred by motion",
+      "generated": true,
+      "bytes": 6310,
       "size": [
         600,
         600
@@ -1719,13 +1721,15 @@
     "scream": {
       "word": "scream",
       "file": "scream.webp",
-      "source_url": "https://commons.wikimedia.org/wiki/File:140708-M-FS592-380_(14672128843).jpg",
-      "author": "U.S. Department of Defense Current Photos",
-      "license": "Public domain",
+      "source": "AI-generated image created for this activity (Blend Buddies – S Blends, Nov 2026); not a Wikimedia Commons photo",
+      "author": "AI-generated for this activity",
+      "license": "Created for this activity; no third-party license",
       "license_url": "",
-      "title": "File:140708-M-FS592-380 (14672128843).jpg",
-      "shows": "man yelling",
-      "bytes": 13192,
+      "source_url": "",
+      "title": "scream (generated)",
+      "shows": "a happy, excited boy screaming with joy, arms up, hair blown back, against a blue sky",
+      "generated": true,
+      "bytes": 23676,
       "size": [
         600,
         600
@@ -1734,13 +1738,15 @@
     "smudge": {
       "word": "smudge",
       "file": "smudge.webp",
-      "source_url": "https://commons.wikimedia.org/wiki/File:Village_Boy,_Madagascar_(22708916781).jpg",
-      "author": "Rod Waddington",
-      "license": "CC BY-SA 2.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
-      "title": "File:Village Boy, Madagascar (22708916781).jpg",
-      "shows": "boy with dirt smudges on his face",
-      "bytes": 35816,
+      "source": "AI-generated image created for this activity (Blend Buddies – S Blends, Nov 2026); not a Wikimedia Commons photo",
+      "author": "AI-generated for this activity",
+      "license": "Created for this activity; no third-party license",
+      "license_url": "",
+      "source_url": "",
+      "title": "smudge (generated)",
+      "shows": "a dark charcoal finger smudge on white paper, with the smudgy fingertip beside it",
+      "generated": true,
+      "bytes": 25818,
       "size": [
         600,
         600
@@ -1764,13 +1770,15 @@
     "snap": {
       "word": "snap",
       "file": "snap.webp",
-      "source_url": "https://commons.wikimedia.org/wiki/File:TalcumSnapping.jpg",
-      "author": "Alicja Colón",
-      "license": "CC0",
-      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-      "title": "File:TalcumSnapping.jpg",
-      "shows": "hand snapping fingers (in a puff of powder)",
-      "bytes": 38492,
+      "source": "AI-generated image created for this activity (Blend Buddies – S Blends, Nov 2026); not a Wikimedia Commons photo",
+      "author": "AI-generated for this activity",
+      "license": "Created for this activity; no third-party license",
+      "license_url": "",
+      "source_url": "",
+      "title": "snap (generated)",
+      "shows": "a child's hand snapping its fingers, middle finger blurred mid-snap, on a bright orange-yellow background",
+      "generated": true,
+      "bytes": 5598,
       "size": [
         600,
         600
@@ -1779,13 +1787,15 @@
     "splat": {
       "word": "splat",
       "file": "splat.webp",
-      "source_url": "https://commons.wikimedia.org/wiki/File:04_Mouvement_-_Movement.jpg",
-      "author": "Moonlander1954",
-      "license": "CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-      "title": "File:04 Mouvement - Movement.jpg",
-      "shows": "water drop splatting into water",
-      "bytes": 21126,
+      "source": "AI-generated image created for this activity (Blend Buddies – S Blends, Nov 2026); not a Wikimedia Commons photo",
+      "author": "AI-generated for this activity",
+      "license": "Created for this activity; no third-party license",
+      "license_url": "",
+      "source_url": "",
+      "title": "splat (generated)",
+      "shows": "a ripe tomato splatted flat on a gray floor, juice and seeds flying outward",
+      "generated": true,
+      "bytes": 52324,
       "size": [
         600,
         600

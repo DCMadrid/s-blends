@@ -1,7 +1,7 @@
 /* Blend Buddies – S blends. A friendly S slides along its buddy's arm, they link arms and make the word.
    Minimal pairs are part of the round: a word like "spin" opens on "pin", and S makes the new word.
    The "listen" slides (one set per blend section) ask the child to pick which word they heard.
-   Original code, characters and sounds; word photos (pictures.js, images/) are openly licensed, see PHOTO_CREDITS.md. No dependencies, no cookies, no storage, no tracking.
+   Original code, characters and sounds; word photos (pictures.js, images/) are openly licensed, plus 5 AI-generated pictures made for this activity; see PHOTO_CREDITS.md. No dependencies, no cookies, no storage, no tracking.
    The only requests are for words.json and the photos in images/ (same site). Sounds are synthesized at run time with the Web Audio API.
    Optional add-ons (tally.js) plug in through hook() below; without them every hook is a no-op. */
 (function () {
@@ -853,7 +853,7 @@
   var fontsReady = document.fonts && document.fonts.load
     ? Promise.all([document.fonts.load('600 100px Fredoka'), document.fonts.load('700 30px Fredoka')]).catch(function () {})
     : Promise.resolve();
-  var wordsReady = fetch('words.json?v=5', { credentials: 'omit' }).then(function (r) { if (!r.ok) throw new Error('words.json ' + r.status); return r.json(); });
+  var wordsReady = fetch('words.json?v=6', { credentials: 'omit' }).then(function (r) { if (!r.ok) throw new Error('words.json ' + r.status); return r.json(); });
   Promise.all([wordsReady, fontsReady]).then(function (v) { start(v[0]); }, function () {
     app.textContent = '';
     var p = document.createElement('p'); p.className = 'load-error';

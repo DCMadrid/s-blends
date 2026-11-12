@@ -1,6 +1,6 @@
 # Photo credits
 
-Every picture on Blend Buddies – S Blends is a real photograph. The page is public, so only openly licensed images are used (public domain / CC0, CC BY, or CC BY-SA). All photos come from Wikimedia Commons. Each was cropped to a square (or letterboxed on a blurred copy of itself) and resized to 600 × 600 WebP. Files live in `images/` and are loaded from a relative path on the same site; the page does not fetch images from anywhere else.
+Every picture on Blend Buddies – S Blends is a real photograph except five: **snap, splat, smudge, spin and scream** use AI-generated images created for this activity, because no clear openly licensed photo could be found (marked below). The page is public, so the photos are openly licensed only (public domain / CC0, CC BY, or CC BY-SA), and all of them come from Wikimedia Commons. Each was cropped to a square (or letterboxed on a blurred copy of itself) and resized to 600 × 600 WebP. Files live in `images/` and are loaded from a relative path on the same site; the page does not fetch images from anywhere else.
 
 Please retain this credit list if you share or adapt the resource. Where a license requires attribution, credit the photographer or institution named below, keep a link to the source, and keep the license notice. CC BY-SA adaptations should be shared under CC BY-SA as well.
 
@@ -118,11 +118,8 @@ Please retain this credit list if you share or adapt the resource. Where a licen
 ## spin
 
 - File: `images/spin.webp`
-- Title: 'Alikoto'.jpg
-- Author: $ir$terlin
-- License: CC BY-SA 4.0 ([deed](https://creativecommons.org/licenses/by-sa/4.0))
-- Source: https://commons.wikimedia.org/wiki/File:%27Alikoto%27.jpg
-- Shows: hand spinning a top
+- Source: AI-generated image created for this activity (not a photograph, not from Wikimedia Commons)
+- Shows: a rainbow-striped spinning top whirling on a table, colors blurred by motion
 
 ## spot
 
@@ -336,11 +333,8 @@ Please retain this credit list if you share or adapt the resource. Where a licen
 ## smudge
 
 - File: `images/smudge.webp`
-- Title: Village Boy, Madagascar (22708916781).jpg
-- Author: Rod Waddington
-- License: CC BY-SA 2.0 ([deed](https://creativecommons.org/licenses/by-sa/2.0))
-- Source: https://commons.wikimedia.org/wiki/File:Village_Boy,_Madagascar_(22708916781).jpg
-- Shows: boy with dirt smudges on his face
+- Source: AI-generated image created for this activity (not a photograph, not from Wikimedia Commons)
+- Shows: a dark charcoal finger smudge on white paper, with the smudgy fingertip beside it
 
 ## smart
 
@@ -406,11 +400,8 @@ Please retain this credit list if you share or adapt the resource. Where a licen
 ## snap
 
 - File: `images/snap.webp`
-- Title: TalcumSnapping.jpg
-- Author: Alicja Colón
-- License: CC0 ([deed](http://creativecommons.org/publicdomain/zero/1.0/deed.en))
-- Source: https://commons.wikimedia.org/wiki/File:TalcumSnapping.jpg
-- Shows: hand snapping fingers (in a puff of powder)
+- Source: AI-generated image created for this activity (not a photograph, not from Wikimedia Commons)
+- Shows: a child's hand snapping its fingers, middle finger blurred mid-snap, on a bright orange-yellow background
 
 ## sniff
 
@@ -716,11 +707,8 @@ Please retain this credit list if you share or adapt the resource. Where a licen
 ## splat
 
 - File: `images/splat.webp`
-- Title: 04 Mouvement - Movement.jpg
-- Author: Moonlander1954
-- License: CC BY-SA 4.0 ([deed](https://creativecommons.org/licenses/by-sa/4.0))
-- Source: https://commons.wikimedia.org/wiki/File:04_Mouvement_-_Movement.jpg
-- Shows: water drop splatting into water
+- Source: AI-generated image created for this activity (not a photograph, not from Wikimedia Commons)
+- Shows: a ripe tomato splatted flat on a gray floor, juice and seeds flying outward
 
 ## splatter
 
@@ -779,11 +767,8 @@ Please retain this credit list if you share or adapt the resource. Where a licen
 ## scream
 
 - File: `images/scream.webp`
-- Title: 140708-M-FS592-380 (14672128843).jpg
-- Author: U.S. Department of Defense Current Photos
-- License: Public domain
-- Source: https://commons.wikimedia.org/wiki/File:140708-M-FS592-380_(14672128843).jpg
-- Shows: man yelling
+- Source: AI-generated image created for this activity (not a photograph, not from Wikimedia Commons)
+- Shows: a happy, excited boy screaming with joy, arms up, hair blown back, against a blue sky
 
 ## scratch
 

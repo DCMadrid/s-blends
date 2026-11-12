@@ -2,11 +2,11 @@
 
 A free, single-page practice tool for **initial S blends** (st, sp, sk, sm, sn, sw, sl, str, spl, scr). S is a friendly letter who wants to join the other letters. An adult slides the **S** character along its buddy's outstretched arm while the child holds "sssss". A stretchy "sssss" ribbon grows behind S. Every word has its own photograph beside the stage. When S arrives, the two link arms, smile wider, the buddy gives a little tap-pop (the second sound), the blend letters (**s** and **t**) light up in their buddies' colors, bounce together and get a joining bar, a star burst plays and the word is spoken aloud.
 
-On the 24 **pair words** (where leaving S out still makes a real word, such as pin → spin), the round itself is the minimal pair: it opens on the word without S (**pin**, with a picture of a pin, "Can S make a new word?"). When S links arms, **pin** turns into **spin**, the picture changes to the spin photo (a hand spinning a top), and two chips, **pin · spin**, let you hear and compare both words. At the end of each blend section there are **listen slides** (which one did you hear?) for that section's pairs.
+On the 24 **pair words** (where leaving S out still makes a real word, such as pin → spin), the round itself is the minimal pair: it opens on the word without S (**pin**, with a picture of a pin, "Can S make a new word?"). When S links arms, **pin** turns into **spin**, the picture changes to a spinning top, and two chips, **pin · spin**, let you hear and compare both words. At the end of each blend section there are **listen slides** (which one did you hear?) for that section's pairs.
 
 Created for Daniela Madrid, MS, CCC-SLP.
 
-Concept inspired by the idea of S as a friendly sound; all characters, sounds and code are original. The word pictures are openly licensed photographs (see PHOTO_CREDITS.md).
+Concept inspired by the idea of S as a friendly sound; all characters, sounds and code are original. The word pictures are openly licensed photographs, plus 5 AI-generated images made for this activity (see PHOTO_CREDITS.md).
 
 ## How to use
 
@@ -21,7 +21,7 @@ Concept inspired by the idea of S as a friendly sound; all characters, sounds an
 
 ## Pictures and motion
 
-Each of the 99 words, and each of the 24 S-less pair words, has a real photograph in `images/` (123 photos). `pictures.js` loads them from a relative path on the same site, with no third-party requests. Sources, authors and licenses are listed in **PHOTO_CREDITS.md** (and in `images/manifest.json`). Only openly licensed photos are used (public domain / CC0, CC BY, CC BY-SA). The buddies still breathe and blink now and then. Pictures pop in softly when a word loads. The word and characters never jump.
+Each of the 99 words, and each of the 24 S-less pair words, has a picture in `images/` (123 in all): 118 real photographs and 5 AI-generated images created for this activity (snap, splat, smudge, spin, scream), used where no clear openly licensed photo could be found. `pictures.js` loads them from a relative path on the same site, with no third-party requests. Sources, authors and licenses are listed in **PHOTO_CREDITS.md** (and in `images/manifest.json`). The photos are all openly licensed (public domain / CC0, CC BY, CC BY-SA). The buddies still breathe and blink now and then. Pictures pop in softly when a word loads. The word and characters never jump.
 
 - **Pause motion:** the **pause** button (two bars) next to the speaker stops all idle animations (the buddies breathing and blinking, the pop-ins and star burst). The photos are always still. This helps children who are distracted by motion (for example CVI). It shows a play triangle while paused; tap it again to resume. It is kept only in the link (`&motion=off`), so you can bookmark a paused link. Nothing is stored.
 - The page also honors the device's Reduce Motion setting: it starts paused, and transitions are minimal.
@@ -49,7 +49,7 @@ All sounds are generated live in the browser with the Web Audio API. There are n
 | `style.css` | Styles and animations |
 | `app.js` | All behavior and the sound generator. Plain JavaScript with no libraries and no build step |
 | `pictures.js` | Points each word to its photo in `images/` |
-| `images/` | The 123 word photos (600 × 600 WebP) and `manifest.json` (source, author, license for each) |
+| `images/` | The 123 word pictures (600 × 600 WebP; 118 photos, 5 AI-generated) and `manifest.json` (source, author, license for each) |
 | `PHOTO_CREDITS.md` | Photo credits and licenses |
 | `tally.js` | The optional data tally (trial; removable, see above) |
 | `words.json` | The word list and settings. This is the single source of truth |
@@ -65,7 +65,7 @@ There are no logins, cookies, local or session storage, analytics or tracking, a
 ## Graphics, sounds and licensing
 
 - **All characters and graphics are original**, drawn in code as SVG and CSS: round letter characters with eyes, smiles and noodle arms, the ribbon, hearts, stars and icons. No clip art, emoji, icon sets or third-party character designs are used, and there are no video files.
-- **Word pictures are real photographs** by other photographers, used under open licenses (public domain / CC0, CC BY or CC BY-SA). Each photo was cropped to a square and resized. Credits, sources and license links are in `PHOTO_CREDITS.md`; please keep that file if you share or adapt the page.
+- **Word pictures are real photographs** by other photographers, used under open licenses (public domain / CC0, CC BY or CC BY-SA), except snap, splat, smudge, spin and scream, which are AI-generated images created for this activity. Each photo was cropped to a square and resized. Credits, sources and license links are in `PHOTO_CREDITS.md`; please keep that file if you share or adapt the page.
 - **All sounds are original**, synthesized at run time (see Sounds).
 - The word list is a set of common English words.
 - The fonts are Fredoka (Copyright 2016 The Fredoka Project Authors) and Nunito (Copyright 2014 The Nunito Project Authors). Both are licensed under the SIL Open Font License 1.1, and the full text is in `OFL.txt`. They were subset to basic Latin and converted to WOFF2.

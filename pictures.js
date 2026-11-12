@@ -1,4 +1,4 @@
-/* Blend Buddies – word pictures. Each picture is a real photograph in images/, used offline via a relative path (no network fetch).
+/* Blend Buddies – word pictures. Each picture is in images/ (real photographs, plus 5 AI-generated images for snap, splat, smudge, spin, scream), used offline via a relative path (no network fetch).
    API: window.BBPictures.has(word), .svg(word) -> inner SVG markup, .list() -> all words with a picture.
    Photo sources, authors and licenses are listed in PHOTO_CREDITS.md and images/manifest.json. */
 (function () {
@@ -13,7 +13,7 @@
     svg: function (w) {
       w = key(w);
       if (!has(w)) return '';
-      return '<image href="images/' + w + '.webp" width="200" height="200" preserveAspectRatio="xMidYMid slice"/>';
+      return '<image href="images/' + w + '.webp?v=6" width="200" height="200" preserveAspectRatio="xMidYMid slice"/>';
     },
     list: function () { return WORDS.slice(); }
   };
